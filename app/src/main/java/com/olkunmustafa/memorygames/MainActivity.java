@@ -16,7 +16,12 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
-    private int grade;
+    /**
+     * Defines the level of the game
+     *
+     * @since 1.1.0
+     */
+    private int level;
 
     /**
      * Provides an area for playing game
@@ -41,20 +46,35 @@ public class MainActivity extends BaseActivity {
     private MainGameAreaAdapter gameAreaAdapter;
 
     /**
+     * Provides a list that is contains
+     * informations about game informations.
+     * Each element carries informations about a level.
+     *
      * @since 0.1.0
      */
     private List< GradeRowColumn > listGRD;
 
     /**
+     * Provides a list that is contains
+     * information each square
+     *
      * @since 0.1.0
      */
     private ArrayList< SquaresInformations > informations;
 
     /**
+     * It is a wrapper that wraps
+     * Game areas {@link MainActivity#mainGameArea1}
      *
+     * @since 1.1.0
      */
     private RelativeLayout gameAreaWrapper;
 
+    /**
+     * Fetchs square informations in Current game
+     *
+     * @since 1.1.0
+     */
     private GradeRowColumn gradeRowColumn;
 
     @Override
@@ -62,8 +82,22 @@ public class MainActivity extends BaseActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
 
+        this.defineViews();
         this.init();
         this.defineMainGameAreaAttr();
+
+    }
+
+    /**
+     * Defines all Views and Viewgroups
+     * in Application.
+     *
+     * @since 1.1.0
+     */
+    private void defineViews() {
+
+        this.gameAreaWrapper = ( RelativeLayout ) findViewById( R.id.gameAreaWrapper );
+        this.mainGameArea1 = ( GridView ) findViewById( R.id.mainGameArea );
 
     }
 
@@ -74,16 +108,13 @@ public class MainActivity extends BaseActivity {
      */
     private void init() {
 
-        this.grade = this.grade + 1;
+        this.level = this.level + 6;
 
-        this.gameAreaWrapper = ( RelativeLayout ) findViewById( R.id.gameAreaWrapper );
-
-        this.mainGameArea1 = ( GridView ) findViewById( R.id.mainGameArea );
         this.listGRD = GridviewGrades.newInstance().getGradeRowColumn();
-
-        this.gradeRowColumn = this.listGRD.get( this.grade - 1 );
+        this.gradeRowColumn = this.listGRD.get( this.level - 1 );
 
         this.informations = CalculateHelper.getGradedList( gradeRowColumn );
+
         this.gameAreaAdapter = new MainGameAreaAdapter( this, this.informations );
         this.mainGameArea1.setAdapter( this.gameAreaAdapter );
 
