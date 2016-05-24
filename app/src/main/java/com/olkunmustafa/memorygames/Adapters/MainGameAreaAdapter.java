@@ -1,6 +1,10 @@
 package com.olkunmustafa.memorygames.Adapters;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +36,18 @@ public class MainGameAreaAdapter extends BaseAdapter {
      * @since 0.1.0
      */
     private Context mContext;
+
+    /**
+     * Whether defines all squares are passive
+     *
+     * @since 0.1.0
+     */
+    private boolean allPassive;
+
+    /**
+     * @since 0.1.0
+     */
+    private Resources mResources;
 
     public MainGameAreaAdapter( Context mContext, ArrayList< SquaresInformations > informationList ) {
         this.informationList = informationList;
@@ -70,12 +86,57 @@ public class MainGameAreaAdapter extends BaseAdapter {
             holder = ( ViewHolder ) convertView.getTag();
         }
 
-        if ( squaresInformations.isActive() )
-            holder.customSquare.setBackgroundColor( this.mContext.getResources().getColor( R.color.colorPrimary ) );
-        else
-            holder.customSquare.setBackgroundColor( this.mContext.getResources().getColor( R.color.colorAccent ) );
+        if ( !this.isAllPassive() ) {
 
+            if ( squaresInformations.isActive() )
+                holder.customSquare.setBackgroundColor( this.mContext.getResources().getColor( R.color.colorPrimary ) );
+            else
+                holder.customSquare.setBackgroundColor( this.mContext.getResources().getColor( R.color.colorAccent ) );
+
+        } else {
+
+            if( squaresInformations.isActive() ){
+
+                int colorFrom = ContextCompat.getColor( this.mContext, R.color.colorPrimary );
+                int colorTo = ContextCompat.getColor( this.mContext, R.color.colorAccent );
+
+                ValueAnimator colorAnimation = ValueAnimator.ofObject( new ArgbEvaluator(), colorFrom, colorTo );
+                colorAnimation.setDuration( 750 ); // milliseconds
+
+                final ViewHolder finalHolder = holder;
+                colorAnimation.addUpdateListener( new ValueAnimator.AnimatorUpdateListener() {
+
+                    @Override
+                    public void onAnimationUpdate( ValueAnimator animator ) {
+                        finalHolder.customSquare.setBackgroundColor( ( int ) animator.getAnimatedValue() );
+
+                    }
+
+                } );
+                colorAnimation.start();
+
+            }
+
+        }
         return convertView;
+    }
+
+    public boolean isAllPassive() {
+        return allPassive;
+    }
+
+    public MainGameAreaAdapter setAllPassive( boolean allPassive ) {
+        this.allPassive = allPassive;
+        return this;
+    }
+
+    private Resources getSystemResources() {
+
+        if ( this.mResources == null )
+            this.mResources = this.mContext.getResources();
+
+        return this.mResources;
+
     }
 
     /*private view holder class*/

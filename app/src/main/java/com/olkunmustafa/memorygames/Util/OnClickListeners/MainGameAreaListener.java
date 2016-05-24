@@ -1,8 +1,10 @@
 package com.olkunmustafa.memorygames.Util.OnClickListeners;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.olkunmustafa.memorygames.MainActivity;
 import com.orhanobut.logger.Logger;
 
 
@@ -12,6 +14,8 @@ import com.orhanobut.logger.Logger;
 public class MainGameAreaListener implements
         AdapterView.OnItemClickListener {
 
+    private Activity mContext;
+
     /**
      * Defines a boolea value
      * that close to click or open.
@@ -20,17 +24,16 @@ public class MainGameAreaListener implements
      */
     private boolean closeToClick;
 
-    public MainGameAreaListener() {
+    public MainGameAreaListener( Activity mContext ) {
+        this.mContext = mContext;
 
         Logger.init();
-
     }
 
     @Override
     public void onItemClick( AdapterView< ? > parent, View view, int position, long id ) {
 
-        if( isCloseToClick() )
-            Logger.d( "pos : " + position );
+//        if ( isCloseToClick() )
 
     }
 

@@ -93,7 +93,6 @@ public class MainActivity extends BaseActivity {
      */
     private Handler mOpenCloseToClick;
 
-
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
@@ -116,6 +115,7 @@ public class MainActivity extends BaseActivity {
         this.gameAreaWrapper = ( RelativeLayout ) findViewById( R.id.gameAreaWrapper );
         this.mainGameArea1 = ( GridView ) findViewById( R.id.mainGameArea );
 
+
     }
 
     /**
@@ -127,10 +127,10 @@ public class MainActivity extends BaseActivity {
 
         Logger.init();
 
-        this.level = this.level + 6;
+        this.level = this.level + 2;
 
-        this.gameAreaListener = new MainGameAreaListener();
-        this.mOpenCloseToClick = new OpenCloseToClick( this.gameAreaListener );
+        this.gameAreaListener = new MainGameAreaListener( this );
+        this.mOpenCloseToClick = new OpenCloseToClick( this );
 
         this.listGRD = GridviewGrades.newInstance().getGradeRowColumn();
         this.gradeRowColumn = this.listGRD.get( this.level - 1 );
@@ -175,5 +175,11 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    public MainGameAreaListener getGameAreaListener() {
+        return gameAreaListener;
+    }
 
+    public MainGameAreaAdapter getGameAreaAdapter() {
+        return gameAreaAdapter;
+    }
 }

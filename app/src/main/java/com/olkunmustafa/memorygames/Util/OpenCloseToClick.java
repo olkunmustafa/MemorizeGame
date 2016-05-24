@@ -1,8 +1,10 @@
 package com.olkunmustafa.memorygames.Util;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 
+import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.Util.OnClickListeners.MainGameAreaListener;
 
 /**
@@ -15,13 +17,14 @@ import com.olkunmustafa.memorygames.Util.OnClickListeners.MainGameAreaListener;
 public class OpenCloseToClick extends Handler {
 
     /**
-     * @since 1.1.0
+     * Provides a Context object
+     *
+     * @since 0.1.0
      */
-    private MainGameAreaListener mainGameAreaListener;
+    private Activity mContext;
 
-    public OpenCloseToClick( MainGameAreaListener mainGameAreaListener ) {
-        this.mainGameAreaListener = mainGameAreaListener;
-
+    public OpenCloseToClick( Activity mContext ) {
+        this.mContext = mContext;
     }
 
     @Override
@@ -31,10 +34,16 @@ public class OpenCloseToClick extends Handler {
         switch ( msg.what ){
 
             case 1:
-                this.mainGameAreaListener.setCloseToClick( true );
+                ((MainActivity)this.mContext)
+                        .getGameAreaListener().setCloseToClick( true );
+                ((MainActivity)this.mContext)
+                        .getGameAreaAdapter().setAllPassive( true ).notifyDataSetChanged();
+
                 break;
             case 0:
-                this.mainGameAreaListener.setCloseToClick( false );
+                ((MainActivity)this.mContext)
+                        .getGameAreaListener().setCloseToClick( false );
+
                 break;
 
         }
