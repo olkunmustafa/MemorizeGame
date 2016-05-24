@@ -1,10 +1,13 @@
 package com.olkunmustafa.memorygames.Util.OnClickListeners;
 
 import android.app.Activity;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.olkunmustafa.memorygames.Adapters.MainGameAreaAdapter;
 import com.olkunmustafa.memorygames.MainActivity;
+import com.olkunmustafa.memorygames.R;
 import com.orhanobut.logger.Logger;
 
 
@@ -33,7 +36,12 @@ public class MainGameAreaListener implements
     @Override
     public void onItemClick( AdapterView< ? > parent, View view, int position, long id ) {
 
-//        if ( isCloseToClick() )
+        if ( isCloseToClick() ) {
+
+            int colorTo = ContextCompat.getColor( this.mContext, R.color.colorYellow );
+            ( ( MainGameAreaAdapter.ViewHolder ) view.getTag() ).getCustomSquare().setBackgroundColor( colorTo );
+
+        }
 
     }
 

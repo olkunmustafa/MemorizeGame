@@ -84,6 +84,7 @@ public class MainGameAreaAdapter extends BaseAdapter {
             convertView.setTag( holder );
         } else {
             holder = ( ViewHolder ) convertView.getTag();
+
         }
 
         if ( !this.isAllPassive() ) {
@@ -95,7 +96,7 @@ public class MainGameAreaAdapter extends BaseAdapter {
 
         } else {
 
-            if( squaresInformations.isActive() ){
+            if ( squaresInformations.isActive() ) {
 
                 int colorFrom = ContextCompat.getColor( this.mContext, R.color.colorPrimary );
                 int colorTo = ContextCompat.getColor( this.mContext, R.color.colorAccent );
@@ -118,6 +119,7 @@ public class MainGameAreaAdapter extends BaseAdapter {
             }
 
         }
+
         return convertView;
     }
 
@@ -140,7 +142,11 @@ public class MainGameAreaAdapter extends BaseAdapter {
     }
 
     /*private view holder class*/
-    private class ViewHolder {
-        CustomSquare customSquare;
+    public class ViewHolder {
+        public CustomSquare customSquare;
+
+        public CustomSquare getCustomSquare() {
+            return customSquare;
+        }
     }
 }
