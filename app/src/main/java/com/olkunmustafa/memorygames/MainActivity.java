@@ -1,6 +1,7 @@
 package com.olkunmustafa.memorygames;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
@@ -10,6 +11,9 @@ import com.olkunmustafa.memorygames.Holders.GradeRowColumn;
 import com.olkunmustafa.memorygames.Holders.GridviewGrades;
 import com.olkunmustafa.memorygames.Holders.SquaresInformations;
 import com.olkunmustafa.memorygames.Util.CalculateHelper;
+import com.olkunmustafa.memorygames.Util.OnClickListeners.MainGameAreaListener;
+import com.olkunmustafa.memorygames.Util.OpenCloseToClick;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +81,19 @@ public class MainActivity extends BaseActivity {
      */
     private GradeRowColumn gradeRowColumn;
 
+    /**
+     * Provides listener for gameArea
+     *
+     * @since 1.1.0
+     */
+    private MainGameAreaListener gameAreaListener;
+
+    /**
+     * @since 1.1.0
+     */
+    private Handler mOpenCloseToClick;
+
+
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
@@ -108,7 +125,12 @@ public class MainActivity extends BaseActivity {
      */
     private void init() {
 
+        Logger.init();
+
         this.level = this.level + 6;
+
+        this.gameAreaListener = new MainGameAreaListener();
+        this.mOpenCloseToClick = new OpenCloseToClick( this.gameAreaListener );
 
         this.listGRD = GridviewGrades.newInstance().getGradeRowColumn();
         this.gradeRowColumn = this.listGRD.get( this.level - 1 );
@@ -117,6 +139,18 @@ public class MainActivity extends BaseActivity {
 
         this.gameAreaAdapter = new MainGameAreaAdapter( this, this.informations );
         this.mainGameArea1.setAdapter( this.gameAreaAdapter );
+        this.mainGameArea1.setOnItemClickListener( this.gameAreaListener );
+
+        this.openClickOperation();
+    }
+
+    /**
+     * Opens to click the main game area.
+     *
+     * @since 0.1.0
+     */
+    private void openClickOperation() {
+        mOpenCloseToClick.sendEmptyMessageDelayed( 1, 3000 );
 
     }
 
