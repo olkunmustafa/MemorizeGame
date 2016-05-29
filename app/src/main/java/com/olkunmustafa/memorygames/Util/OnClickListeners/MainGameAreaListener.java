@@ -71,7 +71,7 @@ public class MainGameAreaListener implements
     @Override
     public void onItemClick( AdapterView< ? > parent, View view, int position, long id ) {
 
-        if ( isCloseToClick() && this.mContext instanceof MainActivity ) {
+        if ( isCloseToClick() ) {
 
             int colorTrue = ContextCompat.getColor( this.mContext, R.color.colorPrimary );
             int colorFalse = ContextCompat.getColor( this.mContext, R.color.colorYellow );
@@ -83,32 +83,18 @@ public class MainGameAreaListener implements
             if ( sInformation.isActive() ) {
                 customSquare.setBackgroundColor( colorTrue );
 
+                // Close to click if the clicked square count size is equal to active square count.
+                if ( this.squaresInformationses.size() == this.mContext.getGradeRowColumn().getActiveCount() ) {
+                    this.setCloseToClick( false );
+                }
+
             } else {
                 customSquare.setBackgroundColor( colorFalse );
-
-            }
-
-            // Close to click if the clicked square count size is equal to active square count.
-            if ( this.squaresInformationses.size() == this.mContext.getGradeRowColumn().getActiveCount() ) {
                 this.setCloseToClick( false );
+
             }
         }
 
-    }
-
-    /**
-     * @param sInformation
-     * @since 0.1.0
-     */
-    private boolean validateTheAnswers( SquaresInformations sInformation ) {
-
-        for ( SquaresInformations s : this.mContext.getInformations() ) {
-
-            if ( s.getId() == sInformation.getId() )
-                return true;
-        }
-
-        return false;
     }
 
     public boolean isCloseToClick() {

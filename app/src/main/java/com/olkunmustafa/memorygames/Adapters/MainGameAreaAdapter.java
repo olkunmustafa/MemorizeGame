@@ -87,6 +87,7 @@ public class MainGameAreaAdapter extends BaseAdapter {
 
         }
 
+        // Triggered when the game starts.
         if ( !this.isAllPassive() ) {
 
             if ( squaresInformations.isActive() )
@@ -94,7 +95,9 @@ public class MainGameAreaAdapter extends BaseAdapter {
             else
                 holder.customSquare.setBackgroundColor( this.mContext.getResources().getColor( R.color.colorAccent ) );
 
-        } else {
+        }
+        // Triggered when all squares are convert to passive color.
+        else {
 
             if ( squaresInformations.isActive() ) {
 
@@ -102,7 +105,7 @@ public class MainGameAreaAdapter extends BaseAdapter {
                 int colorTo = ContextCompat.getColor( this.mContext, R.color.colorAccent );
 
                 ValueAnimator colorAnimation = ValueAnimator.ofObject( new ArgbEvaluator(), colorFrom, colorTo );
-                colorAnimation.setDuration( 750 ); // milliseconds
+                colorAnimation.setDuration( 300 ); // milliseconds
 
                 final ViewHolder finalHolder = holder;
                 colorAnimation.addUpdateListener( new ValueAnimator.AnimatorUpdateListener() {
