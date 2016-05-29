@@ -11,14 +11,22 @@ package com.olkunmustafa.memorygames.Holders;
 public class SquaresInformations {
 
     /**
+     * Defines the ids of active squares
+     *
+     * @since 1.2.0
+     */
+    private int id;
+
+    /**
      * Defines the whether square is active or not.
      *
      * @since 0.1.0
      */
     private boolean active;
 
-    public SquaresInformations( boolean active ) {
+    public SquaresInformations( int id, boolean active ) {
         this.active = active;
+        this.id = id;
     }
 
     public boolean isActive() {
@@ -27,6 +35,15 @@ public class SquaresInformations {
 
     public SquaresInformations setActive( boolean active ) {
         this.active = active;
+        return this;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public SquaresInformations setId( int id ) {
+        this.id = id;
         return this;
     }
 }

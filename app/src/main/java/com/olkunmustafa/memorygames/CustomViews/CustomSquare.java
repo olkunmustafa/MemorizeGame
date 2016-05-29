@@ -47,7 +47,6 @@ public class CustomSquare extends View {
     protected void onDraw( Canvas canvas ) {
         super.onDraw( canvas );
 
-
     }
 
     /**

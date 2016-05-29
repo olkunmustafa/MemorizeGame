@@ -1,14 +1,17 @@
 package com.olkunmustafa.memorygames.Util.OnClickListeners;
 
-import android.app.Activity;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.olkunmustafa.memorygames.Adapters.MainGameAreaAdapter;
+import com.olkunmustafa.memorygames.CustomViews.CustomSquare;
+import com.olkunmustafa.memorygames.Holders.SquaresInformations;
 import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.R;
 import com.orhanobut.logger.Logger;
+
+import java.util.ArrayList;
 
 
 /**
@@ -17,7 +20,7 @@ import com.orhanobut.logger.Logger;
 public class MainGameAreaListener implements
         AdapterView.OnItemClickListener {
 
-    private Activity mContext;
+    private MainActivity mContext;
 
     /**
      * Defines a boolea value
@@ -27,22 +30,85 @@ public class MainGameAreaListener implements
      */
     private boolean closeToClick;
 
-    public MainGameAreaListener( Activity mContext ) {
+    /**
+     * Saves the square informations
+     * when user the click square.
+     *
+     * @since 1.2.0
+     */
+    private ArrayList< SquaresInformations > squaresInformationses;
+
+    /**
+     * Public consturctor
+     *
+     * @param mContext
+     * @since 1.2.0
+     */
+    public MainGameAreaListener( MainActivity mContext ) {
         this.mContext = mContext;
 
-        Logger.init();
+        this.init();
     }
+
+    /**
+     * It defines init operations for that class.
+     *
+     * @since 0.1.0
+     */
+    private void init() {
+
+        Logger.init();
+
+        this.squaresInformationses = new ArrayList< SquaresInformations >();
+
+    }
+
+    /**
+     * @since 1.2.0
+     */
+    private int gameResult;
 
     @Override
     public void onItemClick( AdapterView< ? > parent, View view, int position, long id ) {
 
-        if ( isCloseToClick() ) {
+        if ( isCloseToClick() && this.mContext instanceof MainActivity ) {
 
-            int colorTo = ContextCompat.getColor( this.mContext, R.color.colorYellow );
-            ( ( MainGameAreaAdapter.ViewHolder ) view.getTag() ).getCustomSquare().setBackgroundColor( colorTo );
+            int colorTrue = ContextCompat.getColor( this.mContext, R.color.colorPrimary );
+            int colorFalse = ContextCompat.getColor( this.mContext, R.color.colorYellow );
+            CustomSquare customSquare = ( ( MainGameAreaAdapter.ViewHolder ) view.getTag() ).getCustomSquare();
 
+            SquaresInformations sInformation = this.mContext.getGameAreaAdapter().getItem( position );
+            this.squaresInformationses.add( sInformation );
+
+            if ( sInformation.isActive() ) {
+                customSquare.setBackgroundColor( colorTrue );
+
+            } else {
+                customSquare.setBackgroundColor( colorFalse );
+
+            }
+
+            // Close to click if the clicked square count size is equal to active square count.
+            if ( this.squaresInformationses.size() == this.mContext.getGradeRowColumn().getActiveCount() ) {
+                this.setCloseToClick( false );
+            }
         }
 
+    }
+
+    /**
+     * @param sInformation
+     * @since 0.1.0
+     */
+    private boolean validateTheAnswers( SquaresInformations sInformation ) {
+
+        for ( SquaresInformations s : this.mContext.getInformations() ) {
+
+            if ( s.getId() == sInformation.getId() )
+                return true;
+        }
+
+        return false;
     }
 
     public boolean isCloseToClick() {
@@ -52,5 +118,22 @@ public class MainGameAreaListener implements
     public MainGameAreaListener setCloseToClick( boolean closeToClick ) {
         this.closeToClick = closeToClick;
         return this;
+    }
+
+    public boolean isGameResult() {
+        return gameResult == 0;
+    }
+
+    public void setGameResult( boolean gameResult ) {
+
+        if ( gameResult )
+            this.gameResult++;
+
+    }
+
+    public void resetResult() {
+
+        this.gameResult = 0;
+
     }
 }

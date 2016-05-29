@@ -14,7 +14,7 @@ public class CalculateHelper {
      * @param gradeRowColumn Mevcut oyunun temel bilgileri.
      * @return Mevcut oyunda hangi karelerin aktif olacağına
      * dair ve diğer özelliklerini doldurur.
-     *
+     * <p/>
      * TODO gelişmiş bir algoritma sonradan doldurulacak.
      * @since 0.1.0
      */
@@ -25,7 +25,7 @@ public class CalculateHelper {
         for ( int i = 1; i <= total; i++ ) {
 
             boolean active = gradeRowColumn.activeCount >= i;
-            informations.add( new SquaresInformations( active ) );
+            informations.add( new SquaresInformations( i, active ) );
 
         }
 

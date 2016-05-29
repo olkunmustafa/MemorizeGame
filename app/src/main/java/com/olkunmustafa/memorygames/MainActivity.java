@@ -150,7 +150,7 @@ public class MainActivity extends BaseActivity {
      * @since 0.1.0
      */
     private void openClickOperation() {
-        mOpenCloseToClick.sendEmptyMessageDelayed( 1, 3000 );
+        mOpenCloseToClick.sendEmptyMessageDelayed( 1, 1000 );
 
     }
 
@@ -181,5 +181,13 @@ public class MainActivity extends BaseActivity {
 
     public MainGameAreaAdapter getGameAreaAdapter() {
         return gameAreaAdapter;
+    }
+
+    public GradeRowColumn getGradeRowColumn() {
+        return gradeRowColumn;
+    }
+
+    public ArrayList< SquaresInformations > getInformations() {
+        return informations;
     }
 }
