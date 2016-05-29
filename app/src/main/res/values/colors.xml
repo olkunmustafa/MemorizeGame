@@ -8,5 +8,10 @@
     <color name="black_overlay">#66000000</color>
     <color name="myTextPrimaryColor">#212121</color>
 
+    <color name="elm">#20877A</color>
+    <color name="eucalyptus">#23776C</color>
+    <color name="mountain_meadow">#19968E</color>
+    <color name="transparent_black">#80000000</color>
+
 </resources>
 

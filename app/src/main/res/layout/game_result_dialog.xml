@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent_black">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/dialog_wrapper_background"
+        android:paddingLeft="@dimen/dialog_padding_lr"
+        android:paddingRight="@dimen/dialog_padding_lr"
+        android:paddingTop="@dimen/dialog_padding_tb"
+        android:paddingBottom="@dimen/dialog_padding_tb"
+        >
+
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummyText"
+            android:id="@+id/dialogTitle"
+            android:layout_marginBottom="@dimen/dialog_text_margin_bottom"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummyButtonText"
+            android:background="@drawable/button_background"
+            android:textColor="@android:color/white"
+            android:id="@+id/dialogButton"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

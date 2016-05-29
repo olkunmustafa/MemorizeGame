@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Memory Games</string>
 
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_custom_view_test">CustomViewTestActivity</string>
+    <string name="dummyText">Dummy Text</string>
+    <string name="dummyButtonText">Click</string>
 </resources>
