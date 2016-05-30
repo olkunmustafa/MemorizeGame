@@ -1,10 +1,6 @@
 package com.olkunmustafa.memorygames.Util.GameResults;
 
-import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
 import android.view.View;
-import android.view.animation.BounceInterpolator;
-import android.widget.LinearLayout;
 
 import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.R;
@@ -21,11 +17,11 @@ public class WinTheGame extends BaseResultTheGame {
     /**
      * Public constructor
      *
-     * @param mFindResultViews To catch views in Dialog
+     * @param context To catch views in Dialog
      * @since 0.1.0
      */
-    public WinTheGame( MainActivity mFindResultViews ) {
-        super( mFindResultViews );
+    public WinTheGame( MainActivity context ) {
+        super( context );
 
     }
 
@@ -42,6 +38,21 @@ public class WinTheGame extends BaseResultTheGame {
                 .getFindResultViews()
                 .getDialogButton()
                 .setText( getmContext().getResources().getString( R.string.continue_to_play ) );
+
+    }
+
+    @Override
+    public void clickForOperation() {
+
+        this.getmContext()
+                .getFindResultViews()
+                .getDialogButton().setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+                closeResultDialog();
+
+            }
+        } );
 
     }
 

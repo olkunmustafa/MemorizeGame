@@ -24,11 +24,11 @@ public class BaseResultTheGame implements ITheGameResult {
     /**
      * Public constructor
      *
-     * @param mFindResultViews To catch views in Dialog
+     * @param context To catch views in Dialog
      * @since 0.1.0
      */
-    public BaseResultTheGame( MainActivity mFindResultViews ) {
-        this.mContext = mFindResultViews;
+    public BaseResultTheGame( MainActivity context ) {
+        this.mContext = context;
 
     }
 
@@ -58,6 +58,26 @@ public class BaseResultTheGame implements ITheGameResult {
         animator.setInterpolator( new BounceInterpolator() );
         animator.start();
         // [LinearLayout END]
+
+        this.clickForOperation();
+
+    }
+
+    @Override
+    public void clickForOperation() {
+        // Silent is golden
+
+    }
+
+    @Override
+    public void closeResultDialog() {
+
+        this.getmContext()
+                .getFindResultViews()
+                .getGameResultDialog()
+                .animate()
+                .setDuration( 500 )
+                .alpha( 0 );
 
     }
 
