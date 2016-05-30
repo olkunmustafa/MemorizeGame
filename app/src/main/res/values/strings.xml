@@ -4,4 +4,6 @@
     <string name="title_activity_custom_view_test">CustomViewTestActivity</string>
     <string name="dummyText">Dummy Text</string>
     <string name="dummyButtonText">Click</string>
+    <string name="win_the_game">You are great!</string>
+    <string name="continue_to_play">Continue</string>
 </resources>

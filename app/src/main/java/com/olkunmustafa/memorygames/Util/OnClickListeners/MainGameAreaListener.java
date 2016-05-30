@@ -9,6 +9,8 @@ import com.olkunmustafa.memorygames.CustomViews.CustomSquare;
 import com.olkunmustafa.memorygames.Holders.SquaresInformations;
 import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.R;
+import com.olkunmustafa.memorygames.Util.GameResults.GameResultOps;
+import com.olkunmustafa.memorygames.Util.GameResults.WinTheGame;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -37,6 +39,11 @@ public class MainGameAreaListener implements
      * @since 1.2.0
      */
     private ArrayList< SquaresInformations > squaresInformationses;
+
+    /**
+     * @since 0.1.0
+     */
+    private GameResultOps mGameResultOps;
 
     /**
      * Public consturctor
@@ -84,8 +91,11 @@ public class MainGameAreaListener implements
                 customSquare.setBackgroundColor( colorTrue );
 
                 // Close to click if the clicked square count size is equal to active square count.
+                // This means, all answers all correct
                 if ( this.squaresInformationses.size() == this.mContext.getGradeRowColumn().getActiveCount() ) {
                     this.setCloseToClick( false );
+                    this.mGameResultOps = new GameResultOps( new WinTheGame( this.mContext ) );
+
                 }
 
             } else {

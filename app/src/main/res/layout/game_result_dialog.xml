@@ -2,9 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/transparent_black">
+                android:background="@color/transparent_black"
+                android:id="@+id/gameResultDialog"
+                android:alpha="0">
 
     <LinearLayout
+        android:id="@+id/gameResultDialogGroup"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,6 +19,8 @@
         android:paddingRight="@dimen/dialog_padding_lr"
         android:paddingTop="@dimen/dialog_padding_tb"
         android:paddingBottom="@dimen/dialog_padding_tb"
+        android:scaleX="0"
+        android:scaleY="0"
         >
 
         <TextView

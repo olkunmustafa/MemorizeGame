@@ -2,6 +2,7 @@ package com.olkunmustafa.memorygames;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
@@ -11,6 +12,8 @@ import com.olkunmustafa.memorygames.Holders.GradeRowColumn;
 import com.olkunmustafa.memorygames.Holders.GridviewGrades;
 import com.olkunmustafa.memorygames.Holders.SquaresInformations;
 import com.olkunmustafa.memorygames.Util.CalculateHelper;
+import com.olkunmustafa.memorygames.Util.GameResults.FindResultViews;
+import com.olkunmustafa.memorygames.Util.GameResults.WinTheGame;
 import com.olkunmustafa.memorygames.Util.OnClickListeners.MainGameAreaListener;
 import com.olkunmustafa.memorygames.Util.OpenCloseToClick;
 import com.orhanobut.logger.Logger;
@@ -89,9 +92,20 @@ public class MainActivity extends BaseActivity {
     private MainGameAreaListener gameAreaListener;
 
     /**
+     * Provides a handler for providing new
+     * delayed operations.
+     *
      * @since 1.1.0
      */
     private Handler mOpenCloseToClick;
+
+    /**
+     * Used to find views
+     * that is used when the game result
+     *
+     * @since 0.1.0
+     */
+    private FindResultViews mFindResultViews;
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
@@ -115,7 +129,6 @@ public class MainActivity extends BaseActivity {
         this.gameAreaWrapper = ( RelativeLayout ) findViewById( R.id.gameAreaWrapper );
         this.mainGameArea1 = ( GridView ) findViewById( R.id.mainGameArea );
 
-
     }
 
     /**
@@ -128,6 +141,8 @@ public class MainActivity extends BaseActivity {
         Logger.init();
 
         this.level = this.level + 2;
+
+        this.mFindResultViews = new FindResultViews( this );
 
         this.gameAreaListener = new MainGameAreaListener( this );
         this.mOpenCloseToClick = new OpenCloseToClick( this );
@@ -189,5 +204,9 @@ public class MainActivity extends BaseActivity {
 
     public ArrayList< SquaresInformations > getInformations() {
         return informations;
+    }
+
+    public FindResultViews getFindResultViews() {
+        return mFindResultViews;
     }
 }
