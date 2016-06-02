@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.R;
+import com.olkunmustafa.memorygames.Util.CalculateHelper;
 
 /**
  * Created by olkunmustafa on 30/05/16
@@ -50,10 +51,47 @@ public class WinTheGame extends BaseResultTheGame {
             @Override
             public void onClick( View v ) {
                 closeResultDialog();
-
+                startNewGame();
             }
         } );
 
+    }
+
+    private void startNewGame() {
+
+        // Increase the level
+        this.getmContext().level
+                = this.getmContext().level + 1;
+
+        // Get squares information
+        this.getmContext().gradeRowColumn
+                = this.getmContext().listGRD.get( this.getmContext().level - 1 );
+
+        // Clear the list
+        this.getmContext().informations
+                .clear();
+
+        // Refresh the list
+        this.getmContext().informations
+                .addAll( CalculateHelper.getGradedList( this.getmContext().gradeRowColumn ) );
+
+        // Clear the informations in Clicked list.
+        this.getmContext().getGameAreaListener()
+                .getSquaresInformationses().clear();
+
+        // Prepare the layout to game.
+        this.getmContext().defineMainGameAreaAttr();
+
+        // Prepare new adapter to game
+        this.getmContext().getGameAreaAdapter()
+                .setAllPassive( false );
+
+        // Refresh the adapter.
+        this.getmContext().getGameAreaAdapter()
+                .notifyDataSetChanged();
+
+        // Opens to click the game.
+        this.getmContext().openClickOperation();
     }
 
 }

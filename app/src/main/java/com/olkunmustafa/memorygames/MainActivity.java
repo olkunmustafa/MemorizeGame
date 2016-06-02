@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity {
      *
      * @since 1.1.0
      */
-    private int level;
+    public int level;
 
     /**
      * Provides an area for playing game
@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
      *
      * @since 0.1.0
      */
-    private GridView mainGameArea2;
+    public GridView mainGameArea2;
 
     /**
      * Prvides an adapter for listing the values
@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity {
      *
      * @since 0.1.0
      */
-    private MainGameAreaAdapter gameAreaAdapter;
+    public MainGameAreaAdapter gameAreaAdapter;
 
     /**
      * Provides a list that is contains
@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity {
      *
      * @since 0.1.0
      */
-    private List< GradeRowColumn > listGRD;
+    public List< GradeRowColumn > listGRD;
 
     /**
      * Provides a list that is contains
@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity {
      *
      * @since 0.1.0
      */
-    private ArrayList< SquaresInformations > informations;
+    public ArrayList< SquaresInformations > informations;
 
     /**
      * It is a wrapper that wraps
@@ -75,21 +75,21 @@ public class MainActivity extends BaseActivity {
      *
      * @since 1.1.0
      */
-    private RelativeLayout gameAreaWrapper;
+    public RelativeLayout gameAreaWrapper;
 
     /**
      * Fetchs square informations in Current game
      *
      * @since 1.1.0
      */
-    private GradeRowColumn gradeRowColumn;
+    public GradeRowColumn gradeRowColumn;
 
     /**
      * Provides listener for gameArea
      *
      * @since 1.1.0
      */
-    private MainGameAreaListener gameAreaListener;
+    public MainGameAreaListener gameAreaListener;
 
     /**
      * Provides a handler for providing new
@@ -97,7 +97,7 @@ public class MainActivity extends BaseActivity {
      *
      * @since 1.1.0
      */
-    private Handler mOpenCloseToClick;
+    public Handler mOpenCloseToClick;
 
     /**
      * Used to find views
@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity {
      *
      * @since 0.1.0
      */
-    private FindResultViews mFindResultViews;
+    public FindResultViews mFindResultViews;
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
@@ -140,23 +140,28 @@ public class MainActivity extends BaseActivity {
 
         Logger.init();
 
-        this.level = this.level + 2;
-
         this.mFindResultViews = new FindResultViews( this );
 
         this.gameAreaListener = new MainGameAreaListener( this );
         this.mOpenCloseToClick = new OpenCloseToClick( this );
+        this.informations = new ArrayList< SquaresInformations >();
 
         this.listGRD = GridviewGrades.newInstance().getGradeRowColumn();
-        this.gradeRowColumn = this.listGRD.get( this.level - 1 );
 
-        this.informations = CalculateHelper.getGradedList( gradeRowColumn );
+        this.startNewGame();
+        this.openClickOperation();
+    }
+
+    private void startNewGame() {
+
+        this.level = this.level + 1;
+        this.gradeRowColumn = this.listGRD.get( this.level - 1 );
+        this.informations.addAll( CalculateHelper.getGradedList( gradeRowColumn ) );
 
         this.gameAreaAdapter = new MainGameAreaAdapter( this, this.informations );
         this.mainGameArea1.setAdapter( this.gameAreaAdapter );
         this.mainGameArea1.setOnItemClickListener( this.gameAreaListener );
 
-        this.openClickOperation();
     }
 
     /**
@@ -164,7 +169,7 @@ public class MainActivity extends BaseActivity {
      *
      * @since 0.1.0
      */
-    private void openClickOperation() {
+    public void openClickOperation() {
         mOpenCloseToClick.sendEmptyMessageDelayed( 1, 1000 );
 
     }
@@ -174,20 +179,24 @@ public class MainActivity extends BaseActivity {
      *
      * @since 0.1.0
      */
-    private void defineMainGameAreaAttr() {
+    public void defineMainGameAreaAttr() {
 
         if ( this.mainGameArea1 != null ) {
-            this.mainGameArea1.setNumColumns( this.gradeRowColumn.column );
+            this.mainGameArea1.setNumColumns( this.getGradeRowColumn().column );
 
             int width = getResources().getDimensionPixelSize( R.dimen.columnSize );
 
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams( ( width * this.gradeRowColumn.column ), ViewGroup.LayoutParams.WRAP_CONTENT );
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams( ( width * this.getGradeRowColumn().column ), ViewGroup.LayoutParams.WRAP_CONTENT );
             lp.addRule( RelativeLayout.CENTER_VERTICAL );
             lp.addRule( RelativeLayout.CENTER_HORIZONTAL );
 
             this.gameAreaWrapper.setLayoutParams( lp );
 
         }
+    }
+
+    public GridView getMainGameArea1() {
+        return mainGameArea1;
     }
 
     public MainGameAreaListener getGameAreaListener() {

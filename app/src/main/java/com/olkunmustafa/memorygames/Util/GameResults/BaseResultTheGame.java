@@ -8,6 +8,7 @@ import android.view.animation.BounceInterpolator;
 import android.widget.LinearLayout;
 
 import com.olkunmustafa.memorygames.MainActivity;
+import com.orhanobut.logger.Logger;
 
 /**
  * Created by olkunmustafa on 30/05/16
@@ -66,7 +67,6 @@ public class BaseResultTheGame implements ITheGameResult {
         // [LinearLayout END]
 
         this.clickForOperation();
-
     }
 
     @Override
@@ -95,6 +95,23 @@ public class BaseResultTheGame implements ITheGameResult {
                         .getFindResultViews()
                         .getGameResultDialog()
                         .setVisibility( View.GONE );
+
+                getmContext()
+                        .getFindResultViews()
+                        .getGameResultDialogGroup()
+                        .setScaleX( 0 );
+
+                getmContext()
+                        .getFindResultViews()
+                        .getGameResultDialogGroup()
+                        .setScaleY( 0 );
+
+                getmContext()
+                        .getFindResultViews()
+                        .getGameResultDialog()
+                        .animate()
+                        .setListener( null );
+
             }
 
             @Override

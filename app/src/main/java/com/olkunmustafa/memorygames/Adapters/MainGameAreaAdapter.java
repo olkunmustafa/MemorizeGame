@@ -92,6 +92,7 @@ public class MainGameAreaAdapter extends BaseAdapter {
 
             if ( squaresInformations.isActive() )
                 holder.customSquare.setBackgroundColor( this.mContext.getResources().getColor( R.color.colorPrimary ) );
+
             else
                 holder.customSquare.setBackgroundColor( this.mContext.getResources().getColor( R.color.colorAccent ) );
 

@@ -116,20 +116,7 @@ public class MainGameAreaListener implements
         return this;
     }
 
-    public boolean isGameResult() {
-        return gameResult == 0;
-    }
-
-    public void setGameResult( boolean gameResult ) {
-
-        if ( gameResult )
-            this.gameResult++;
-
-    }
-
-    public void resetResult() {
-
-        this.gameResult = 0;
-
+    public ArrayList< SquaresInformations > getSquaresInformationses() {
+        return squaresInformationses;
     }
 }
