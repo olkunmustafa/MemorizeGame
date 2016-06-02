@@ -4,7 +4,8 @@
                 android:layout_height="match_parent"
                 android:background="@color/transparent_black"
                 android:id="@+id/gameResultDialog"
-                android:alpha="0">
+                android:alpha="0"
+                android:visibility="gone">
 
     <LinearLayout
         android:id="@+id/gameResultDialogGroup"

@@ -1,5 +1,6 @@
 package com.olkunmustafa.memorygames.Util.GameResults;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.view.View;
@@ -34,6 +35,11 @@ public class BaseResultTheGame implements ITheGameResult {
 
     @Override
     public void showResultWithDialog() {
+
+        this.getmContext()
+                .getFindResultViews()
+                .getGameResultDialog()
+                .setVisibility( View.VISIBLE );
 
         this.getmContext()
                 .getFindResultViews()
@@ -77,7 +83,30 @@ public class BaseResultTheGame implements ITheGameResult {
                 .getGameResultDialog()
                 .animate()
                 .setDuration( 500 )
-                .alpha( 0 );
+                .alpha( 0 ).setListener( new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart( Animator animation ) {
+
+            }
+
+            @Override
+            public void onAnimationEnd( Animator animation ) {
+                getmContext()
+                        .getFindResultViews()
+                        .getGameResultDialog()
+                        .setVisibility( View.GONE );
+            }
+
+            @Override
+            public void onAnimationCancel( Animator animation ) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat( Animator animation ) {
+
+            }
+        } );
 
     }
 
