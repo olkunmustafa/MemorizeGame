@@ -8,6 +8,7 @@ import android.view.animation.BounceInterpolator;
 import android.widget.LinearLayout;
 
 import com.olkunmustafa.memorygames.MainActivity;
+import com.olkunmustafa.memorygames.Util.CalculateHelper;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -24,6 +25,14 @@ public class BaseResultTheGame implements ITheGameResult {
     private MainActivity mContext;
 
     /**
+     * Used to find views
+     * that is used when the game result
+     *
+     * @since 0.1.0
+     */
+    protected FindResultViews mFindViewResultViews;
+
+    /**
      * Public constructor
      *
      * @param context To catch views in Dialog
@@ -32,26 +41,36 @@ public class BaseResultTheGame implements ITheGameResult {
     public BaseResultTheGame( MainActivity context ) {
         this.mContext = context;
 
+        this.init();
+    }
+
+    /**
+    * It defines init operations for that class.
+    *
+    * @since 0.1.0
+    */
+    private void init(){
+
+        this.mFindViewResultViews = this.getmContext()
+                .getFindResultViews();
+
     }
 
     @Override
     public void showResultWithDialog() {
 
-        this.getmContext()
-                .getFindResultViews()
+        this.mFindViewResultViews
                 .getGameResultDialog()
                 .setVisibility( View.VISIBLE );
 
-        this.getmContext()
-                .getFindResultViews()
+        this.mFindViewResultViews
                 .getGameResultDialog()
                 .animate()
                 .setDuration( 500 )
                 .alpha( 1 );
 
         // [LinearLayout START]
-        LinearLayout wrapper = this.getmContext()
-                .getFindResultViews()
+        LinearLayout wrapper = this.mFindViewResultViews
                 .getGameResultDialogGroup();
 
         PropertyValuesHolder scaleXHolder
@@ -76,10 +95,44 @@ public class BaseResultTheGame implements ITheGameResult {
     }
 
     @Override
+    public void startNewGame() {
+
+        // Get squares information
+        this.getmContext().gradeRowColumn
+                = this.getmContext().listGRD.get( this.getmContext().level - 1 );
+
+        // Clear the list
+        this.getmContext().informations
+                .clear();
+
+        // Refresh the list
+        this.getmContext().informations
+                .addAll( CalculateHelper.getGradedList( this.getmContext().gradeRowColumn ) );
+
+        // Clear the informations in Clicked list.
+        this.getmContext().getGameAreaListener()
+                .getSquaresInformationses().clear();
+
+        // Prepare the layout to game.
+        this.getmContext().defineMainGameAreaAttr();
+
+        // Prepare new adapter to game
+        this.getmContext().getGameAreaAdapter()
+                .setAllPassive( false );
+
+        // Refresh the adapter.
+        this.getmContext().getGameAreaAdapter()
+                .notifyDataSetChanged();
+
+        // Opens to click the game.
+        this.getmContext().openClickOperation();
+
+    }
+
+    @Override
     public void closeResultDialog() {
 
-        this.getmContext()
-                .getFindResultViews()
+        this.mFindViewResultViews
                 .getGameResultDialog()
                 .animate()
                 .setDuration( 500 )
@@ -91,23 +144,19 @@ public class BaseResultTheGame implements ITheGameResult {
 
             @Override
             public void onAnimationEnd( Animator animation ) {
-                getmContext()
-                        .getFindResultViews()
+                mFindViewResultViews
                         .getGameResultDialog()
                         .setVisibility( View.GONE );
 
-                getmContext()
-                        .getFindResultViews()
+                mFindViewResultViews
                         .getGameResultDialogGroup()
                         .setScaleX( 0 );
 
-                getmContext()
-                        .getFindResultViews()
+                mFindViewResultViews
                         .getGameResultDialogGroup()
                         .setScaleY( 0 );
 
-                getmContext()
-                        .getFindResultViews()
+                mFindViewResultViews
                         .getGameResultDialog()
                         .animate()
                         .setListener( null );

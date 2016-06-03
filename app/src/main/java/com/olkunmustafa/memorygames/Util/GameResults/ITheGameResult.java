@@ -28,4 +28,11 @@ public interface ITheGameResult {
      */
     void closeResultDialog();
 
+    /**
+     * Starts a new game
+     *
+     * @since 0.1.0
+     */
+    void startNewGame();
+
 }
