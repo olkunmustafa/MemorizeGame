@@ -80,27 +80,41 @@ public class MainGameAreaListener implements
 
         if ( isCloseToClick() ) {
 
+            // Defines that user  clicked th
+            boolean theSameClick = false;
             int colorTrue = ContextCompat.getColor( this.mContext, R.color.colorPrimary );
             int colorFalse = ContextCompat.getColor( this.mContext, R.color.colorYellow );
             CustomSquare customSquare = ( ( MainGameAreaAdapter.ViewHolder ) view.getTag() ).getCustomSquare();
 
             SquaresInformations sInformation = this.mContext.getGameAreaAdapter().getItem( position );
-            this.squaresInformationses.add( sInformation );
+            // Defines whether the user clicked the same square
+            for ( SquaresInformations s : this.squaresInformationses ) {
 
-            if ( sInformation.isActive() ) {
-                customSquare.setBackgroundColor( colorTrue );
+                if ( s.getId() == sInformation.getId() )
+                    theSameClick = true;
 
-                // Close to click if the clicked square count size is equal to active square count.
-                // This means, all answers all correct
-                if ( this.squaresInformationses.size() == this.mContext.getGradeRowColumn().getActiveCount() ) {
+            }
+
+            if ( !theSameClick ) {
+
+                this.squaresInformationses.add( sInformation );
+
+                if ( sInformation.isActive() ) {
+                    customSquare.setBackgroundColor( colorTrue );
+
+                    // Close to click if the clicked square count size is equal to active square count.
+                    // This means, all answers all correct
+                    if ( this.squaresInformationses.size() == this.mContext.getGradeRowColumn().getActiveCount() ) {
+                        this.setCloseToClick( false );
+                        this.mGameResultOps = new GameResultOps( new WinTheGame( this.mContext ) );
+
+                    }
+
+                } else {
+                    customSquare.setBackgroundColor( colorFalse );
                     this.setCloseToClick( false );
-                    this.mGameResultOps = new GameResultOps( new WinTheGame( this.mContext ) );
 
                 }
-
-            } else {
-                customSquare.setBackgroundColor( colorFalse );
-                this.setCloseToClick( false );
 
             }
         }
