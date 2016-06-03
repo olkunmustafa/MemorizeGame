@@ -10,6 +10,7 @@ import com.olkunmustafa.memorygames.Holders.SquaresInformations;
 import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.R;
 import com.olkunmustafa.memorygames.Util.GameResults.GameResultOps;
+import com.olkunmustafa.memorygames.Util.GameResults.LoseTheGame;
 import com.olkunmustafa.memorygames.Util.GameResults.WinTheGame;
 import com.orhanobut.logger.Logger;
 
@@ -113,6 +114,7 @@ public class MainGameAreaListener implements
                 } else {
                     customSquare.setBackgroundColor( colorFalse );
                     this.setCloseToClick( false );
+                    this.mGameResultOps = new GameResultOps( new LoseTheGame( this.mContext ) );
 
                 }
 
