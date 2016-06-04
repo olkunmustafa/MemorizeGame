@@ -14,7 +14,15 @@ import com.orhanobut.logger.Logger;
 /**
  * Created by olkunmustafa on 30/05/16
  */
-public class BaseResultTheGame implements ITheGameResult {
+public abstract class BaseResultTheGame {
+
+    /**
+     * Defines to define duration for
+     * translationX animations.
+     *
+     * @since 0.1.0
+     */
+    public static final int TRANSLATION_X_DURATION = 500;
 
     /**
      * Provides a class in order to catch
@@ -56,7 +64,19 @@ public class BaseResultTheGame implements ITheGameResult {
 
     }
 
-    @Override
+    /**
+     * Ends the game
+     *
+     * @since 0.1.0
+     */
+    public abstract void endTheGame();
+
+    /**
+     * Shows a dialog to show
+     * the game result.
+     *
+     * @since 0.1.0
+     */
     public void showResultWithDialog() {
 
         this.mFindViewResultViews
@@ -88,13 +108,22 @@ public class BaseResultTheGame implements ITheGameResult {
         this.clickForOperation();
     }
 
-    @Override
+    /**
+     * Starts a operation when
+     * usere to click on button.
+     *
+     * @since 0.1.0
+     */
     public void clickForOperation() {
         // Silent is golden
 
     }
 
-    @Override
+    /**
+     * Starts a new game
+     *
+     * @since 0.1.0
+     */
     public void startNewGame() {
 
         // Get squares information
@@ -129,7 +158,11 @@ public class BaseResultTheGame implements ITheGameResult {
 
     }
 
-    @Override
+    /**
+     * Hides the resut dialog
+     *
+     * @since 0.1.0
+     */
     public void closeResultDialog() {
 
         this.mFindViewResultViews

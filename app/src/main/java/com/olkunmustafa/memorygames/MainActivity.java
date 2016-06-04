@@ -78,6 +78,11 @@ public class MainActivity extends BaseActivity {
     public RelativeLayout gameAreaWrapper;
 
     /**
+     * @since 1.1.0
+     */
+    public RelativeLayout mainWrapper;
+
+    /**
      * Fetchs square informations in Current game
      *
      * @since 1.1.0
@@ -127,6 +132,7 @@ public class MainActivity extends BaseActivity {
     private void defineViews() {
 
         this.gameAreaWrapper = ( RelativeLayout ) findViewById( R.id.gameAreaWrapper );
+        this.mainWrapper = ( RelativeLayout ) findViewById( R.id.mainWrapper );
         this.mainGameArea1 = ( GridView ) findViewById( R.id.mainGameArea );
 
     }
@@ -197,6 +203,14 @@ public class MainActivity extends BaseActivity {
 
     public GridView getMainGameArea1() {
         return mainGameArea1;
+    }
+
+    public RelativeLayout getGameAreaWrapper() {
+        return gameAreaWrapper;
+    }
+
+    public RelativeLayout getMainWrapper() {
+        return mainWrapper;
     }
 
     public MainGameAreaListener getGameAreaListener() {

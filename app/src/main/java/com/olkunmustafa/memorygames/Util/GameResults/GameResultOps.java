@@ -8,9 +8,9 @@ public class GameResultOps {
     /**
      *
      */
-    public ITheGameResult iTheGameResult;
+    public BaseResultTheGame iTheGameResult;
 
-    public GameResultOps( ITheGameResult iTheGameResult ) {
+    public GameResultOps( BaseResultTheGame iTheGameResult ) {
         this.iTheGameResult = iTheGameResult;
 
         this.init();
@@ -22,7 +22,7 @@ public class GameResultOps {
     * @since 0.1.0
     */
     private void init(){
-        this.iTheGameResult.showResultWithDialog();
+        this.iTheGameResult.endTheGame();
 
     }
 }

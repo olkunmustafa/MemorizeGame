@@ -1,5 +1,6 @@
 package com.olkunmustafa.memorygames.Util.GameResults;
 
+import android.animation.Animator;
 import android.view.View;
 
 import com.olkunmustafa.memorygames.MainActivity;
@@ -23,6 +24,47 @@ public class WinTheGame extends BaseResultTheGame {
     public WinTheGame( MainActivity context ) {
         super( context );
 
+    }
+
+    @Override
+    public void endTheGame() {
+        this.getmContext()
+                .getGameAreaWrapper()
+                .animate()
+                .translationX( - this.getmContext()
+                        .getMainWrapper().getWidth() )
+                .setDuration( TRANSLATION_X_DURATION )
+                .setListener( new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart( Animator animation ) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd( Animator animation ) {
+                        showResultWithDialog();
+
+                        getmContext()
+                                .getGameAreaWrapper()
+                                .setTranslationX( getmContext()
+                                        .getMainWrapper().getWidth() );
+
+                        getmContext()
+                                .getGameAreaWrapper()
+                                .animate()
+                                .setListener( null );
+                    }
+
+                    @Override
+                    public void onAnimationCancel( Animator animation ) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat( Animator animation ) {
+
+                    }
+                } );
     }
 
     @Override
@@ -61,6 +103,13 @@ public class WinTheGame extends BaseResultTheGame {
                 = this.getmContext().level + 1;
 
         super.startNewGame();
+
+        this.getmContext()
+                .getGameAreaWrapper()
+                .animate()
+                .translationX( 0 )
+                .setDuration( TRANSLATION_X_DURATION );
+
     }
 
 }
