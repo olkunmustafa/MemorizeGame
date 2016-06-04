@@ -3,6 +3,7 @@ package com.olkunmustafa.memorygames.Util.GameResults;
 import android.animation.Animator;
 import android.view.View;
 
+import com.olkunmustafa.memorygames.Holders.GridviewGrades;
 import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.R;
 
@@ -98,9 +99,14 @@ public class WinTheGame extends BaseResultTheGame {
     @Override
     public void startNewGame() {
 
-        // Increase the level
-        this.getmContext().level
-                = this.getmContext().level + 1;
+        if( GridviewGrades.newInstance().getGradeRowColumn().size() > this.getmContext().level ){
+
+            // Increase the level
+            this.getmContext().level
+                    = this.getmContext().level + 1;
+
+        }
+
 
         super.startNewGame();
 

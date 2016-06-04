@@ -191,8 +191,12 @@ public class MainActivity extends BaseActivity {
             this.mainGameArea1.setNumColumns( this.getGradeRowColumn().column );
 
             int width = getResources().getDimensionPixelSize( R.dimen.columnSize );
+            int spacing = getResources().getDimensionPixelSize( R.dimen.gridviewMargin );
 
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams( ( width * this.getGradeRowColumn().column ), ViewGroup.LayoutParams.WRAP_CONTENT );
+            width = width * ( this.getGradeRowColumn().column );
+            spacing = spacing * ( this.getGradeRowColumn().column );
+
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams( width + spacing, ViewGroup.LayoutParams.WRAP_CONTENT );
             lp.addRule( RelativeLayout.CENTER_VERTICAL );
             lp.addRule( RelativeLayout.CENTER_HORIZONTAL );
 

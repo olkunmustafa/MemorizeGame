@@ -14,17 +14,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:id="@+id/gameAreaWrapper">
+            android:id="@+id/gameAreaWrapper"
+            android:background="@drawable/game_area_background"
+            android:padding="10dp"
+            >
 
             <GridView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/mainGameArea"
-                android:verticalSpacing="2dp"
-                android:horizontalSpacing="2dp"
-                android:padding="10dp"
+                android:verticalSpacing="@dimen/gridviewMargin"
+                android:horizontalSpacing="@dimen/gridviewMargin"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
+                android:background="@color/myTextPrimaryColor"
                 />
 
         </RelativeLayout>
