@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.olkunmustafa.memorygames.Adapters.MainGameAreaAdapter;
 import com.olkunmustafa.memorygames.Holders.GradeRowColumn;
@@ -35,18 +36,11 @@ public class MainActivity extends BaseActivity {
      *
      * @since 0.1.0
      */
-    private GridView mainGameArea1;
-
-    /**
-     * Provides an area for playing game
-     *
-     * @since 0.1.0
-     */
-    public GridView mainGameArea2;
+    private GridView mainGameArea;
 
     /**
      * Prvides an adapter for listing the values
-     * in {@link MainActivity#mainGameArea1}
+     * in {@link MainActivity#mainGameArea}
      *
      * @since 0.1.0
      */
@@ -71,7 +65,7 @@ public class MainActivity extends BaseActivity {
 
     /**
      * It is a wrapper that wraps
-     * Game areas {@link MainActivity#mainGameArea1}
+     * Game areas {@link MainActivity#mainGameArea}
      *
      * @since 1.1.0
      */
@@ -112,6 +106,13 @@ public class MainActivity extends BaseActivity {
      */
     public FindResultViews mFindResultViews;
 
+    /**
+     * Wrapper for showing scores
+     *
+     * @since 0.1.0
+     */
+    private RelativeLayout scoreWrapper;
+
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
@@ -133,7 +134,8 @@ public class MainActivity extends BaseActivity {
 
         this.gameAreaWrapper = ( RelativeLayout ) findViewById( R.id.gameAreaWrapper );
         this.mainWrapper = ( RelativeLayout ) findViewById( R.id.mainWrapper );
-        this.mainGameArea1 = ( GridView ) findViewById( R.id.mainGameArea );
+        this.mainGameArea = ( GridView ) findViewById( R.id.mainGameArea );
+        this.scoreWrapper = ( RelativeLayout ) findViewById( R.id.scoreWrapper );
 
     }
 
@@ -165,8 +167,8 @@ public class MainActivity extends BaseActivity {
         this.informations.addAll( CalculateHelper.getGradedList( gradeRowColumn ) );
 
         this.gameAreaAdapter = new MainGameAreaAdapter( this, this.informations );
-        this.mainGameArea1.setAdapter( this.gameAreaAdapter );
-        this.mainGameArea1.setOnItemClickListener( this.gameAreaListener );
+        this.mainGameArea.setAdapter( this.gameAreaAdapter );
+        this.mainGameArea.setOnItemClickListener( this.gameAreaListener );
 
     }
 
@@ -181,22 +183,24 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * Defines features for {@link MainActivity#mainGameArea1}
+     * Defines features for {@link MainActivity#mainGameArea}
      *
      * @since 0.1.0
      */
     public void defineMainGameAreaAttr() {
 
-        if ( this.mainGameArea1 != null ) {
-            this.mainGameArea1.setNumColumns( this.getGradeRowColumn().column );
+        if ( this.mainGameArea != null ) {
+            this.mainGameArea.setNumColumns( this.getGradeRowColumn().column );
 
             int width = getResources().getDimensionPixelSize( R.dimen.columnSize );
             int spacing = getResources().getDimensionPixelSize( R.dimen.gridviewMargin );
 
-            width = width * ( this.getGradeRowColumn().column );
-            spacing = spacing * ( this.getGradeRowColumn().column );
+            int totalWidth = width * ( this.getGradeRowColumn().column );
+            int totalSpacing = spacing * ( this.getGradeRowColumn().column );
 
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams( width + spacing, ViewGroup.LayoutParams.WRAP_CONTENT );
+            int totalHeight = ( width * 6 ) + ( spacing * 6 );
+
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams( totalWidth + totalSpacing, totalHeight );
             lp.addRule( RelativeLayout.CENTER_VERTICAL );
             lp.addRule( RelativeLayout.CENTER_HORIZONTAL );
 
@@ -205,8 +209,12 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    public RelativeLayout getScoreWrapper() {
+        return scoreWrapper;
+    }
+
     public GridView getMainGameArea1() {
-        return mainGameArea1;
+        return mainGameArea;
     }
 
     public RelativeLayout getGameAreaWrapper() {

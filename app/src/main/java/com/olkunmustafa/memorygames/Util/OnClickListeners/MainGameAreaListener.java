@@ -47,6 +47,14 @@ public class MainGameAreaListener implements
     private GameResultOps mGameResultOps;
 
     /**
+     * Changes score when the user
+     * end the game
+     *
+     * @since 0.1.0
+     */
+    protected ChangeScore mChangeScore;
+
+    /**
      * Public consturctor
      *
      * @param mContext
@@ -69,12 +77,10 @@ public class MainGameAreaListener implements
 
         this.squaresInformationses = new ArrayList< SquaresInformations >();
 
-    }
+        this.mChangeScore
+                = new ChangeScore( this.getmContext() );
 
-    /**
-     * @since 1.2.0
-     */
-    private int gameResult;
+    }
 
     @Override
     public void onItemClick( AdapterView< ? > parent, View view, int position, long id ) {
@@ -98,6 +104,7 @@ public class MainGameAreaListener implements
 
             if ( !theSameClick ) {
 
+                this.mChangeScore.increase();
                 this.squaresInformationses.add( sInformation );
 
                 if ( sInformation.isActive() ) {
@@ -134,5 +141,9 @@ public class MainGameAreaListener implements
 
     public ArrayList< SquaresInformations > getSquaresInformationses() {
         return squaresInformationses;
+    }
+
+    public MainActivity getmContext() {
+        return mContext;
     }
 }

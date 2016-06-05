@@ -11,12 +11,31 @@
         android:id="@+id/mainWrapper">
 
         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scoreWrapper"
+            android:layout_above="@+id/gameAreaWrapper"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/totalScore"
+                android:text="Test View"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="40dp"
+                android:textSize="35sp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:id="@+id/gameAreaWrapper"
-            android:background="@drawable/game_area_background"
-            android:padding="10dp"
             >
 
             <GridView
@@ -27,7 +46,8 @@
                 android:horizontalSpacing="@dimen/gridviewMargin"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:background="@color/myTextPrimaryColor"
+                android:background="@drawable/game_area_background"
+                android:padding="5dp"
                 />
 
         </RelativeLayout>
