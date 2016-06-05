@@ -36,19 +36,30 @@ public class GridviewGrades {
     }
 
     /**
-    * It defines init operations for that class.
-    *
-    * @since 0.1.0
-    */
-    private void init(){
+     * It defines init operations for that class.
+     *
+     * @since 0.1.0
+     */
+    private void init() {
+
+        int row = 2;
+        int column = 3;
 
         this.gradeRowColumn = new ArrayList< GradeRowColumn >();
-        this.gradeRowColumn.add( new GradeRowColumn( 1, 2, 3, 2 ) );
-        this.gradeRowColumn.add( new GradeRowColumn( 2, 3, 3, 3 ) );
-        this.gradeRowColumn.add( new GradeRowColumn( 3, 3, 4, 4 ) );
-        this.gradeRowColumn.add( new GradeRowColumn( 4, 4, 4, 5 ) );
-        this.gradeRowColumn.add( new GradeRowColumn( 5, 4, 5, 6 ) );
-        this.gradeRowColumn.add( new GradeRowColumn( 6, 5, 5, 7 ) );
+
+        for ( int i = 1; i < 15; i++ ) {
+
+            if ( i > 1 && row < 6 ) {
+                if ( ( i % 2 ) == 0 )
+                    row++;
+                else
+                    column++;
+
+            }
+
+            this.gradeRowColumn.add( new GradeRowColumn( i, row, column, i + 1 ) );
+
+        }
 
     }
 
