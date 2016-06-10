@@ -34,7 +34,7 @@ public class WinTheGame extends BaseResultTheGame {
         this.getmContext()
                 .getGameAreaWrapper()
                 .animate()
-                .translationX( - this.getmContext()
+                .translationX( -this.getmContext()
                         .getMainWrapper().getWidth() )
                 .setDuration( TRANSLATION_X_DURATION )
                 .setListener( new Animator.AnimatorListener() {
@@ -45,13 +45,17 @@ public class WinTheGame extends BaseResultTheGame {
 
                     @Override
                     public void onAnimationEnd( Animator animation ) {
+
+                        // Shows the score to user
                         showResultWithDialog();
 
+                        // Moves the game are to start point.
                         getmContext()
                                 .getGameAreaWrapper()
                                 .setTranslationX( getmContext()
                                         .getMainWrapper().getWidth() );
 
+                        // Trash the listener.
                         getmContext()
                                 .getGameAreaWrapper()
                                 .animate()
@@ -73,6 +77,15 @@ public class WinTheGame extends BaseResultTheGame {
     @Override
     public void showResultWithDialog() {
         super.showResultWithDialog();
+
+        this.mFindViewResultViews
+                .getLevelPoint()
+                .setText(
+                        String.format(
+                                getMyResources().getString( R.string.level_score ),
+                                getChangeScore().getLevelScore()
+                        )
+                );
 
         this.mFindViewResultViews
                 .getDialogTitle()
@@ -101,7 +114,7 @@ public class WinTheGame extends BaseResultTheGame {
     @Override
     public void startNewGame() {
 
-        if( GridviewGrades.newInstance().getGradeRowColumn().size() > this.getmContext().level ){
+        if ( GridviewGrades.newInstance().getGradeRowColumn().size() > this.getmContext().level ) {
 
             // Increase the level
             this.getmContext().level

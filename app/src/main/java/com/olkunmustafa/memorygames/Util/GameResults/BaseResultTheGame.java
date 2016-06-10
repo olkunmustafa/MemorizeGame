@@ -3,6 +3,7 @@ package com.olkunmustafa.memorygames.Util.GameResults;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.content.res.Resources;
 import android.view.View;
 import android.view.animation.BounceInterpolator;
 import android.widget.LinearLayout;
@@ -49,6 +50,13 @@ public abstract class BaseResultTheGame {
     private ChangeScore changeScore;
 
     /**
+     * Gets the system resources
+     *
+     * @since 0.1.0
+     */
+    private Resources myResources;
+
+    /**
      * Public constructor
      *
      * @param context To catch views in Dialog
@@ -61,14 +69,17 @@ public abstract class BaseResultTheGame {
     }
 
     /**
-    * It defines init operations for that class.
-    *
-    * @since 0.1.0
-    */
-    private void init(){
+     * It defines init operations for that class.
+     *
+     * @since 0.1.0
+     */
+    private void init() {
 
         this.mFindViewResultViews = this.getmContext()
                 .getFindResultViews();
+
+        this.myResources = this.getmContext()
+                .getResources();
 
     }
 
@@ -221,9 +232,13 @@ public abstract class BaseResultTheGame {
 
     }
 
+    public Resources getMyResources() {
+        return myResources;
+    }
+
     public ChangeScore getChangeScore() {
 
-        if( this.changeScore == null )
+        if ( this.changeScore == null )
             throw new NullPointerException( "ChangeScore is null" );
 
         return this.changeScore;

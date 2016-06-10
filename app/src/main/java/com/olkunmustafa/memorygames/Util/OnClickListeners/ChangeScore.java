@@ -172,6 +172,14 @@ public class ChangeScore {
 
     }
 
+    public int getLevelScore() {
+        return levelScore;
+    }
+
+    public int getTotalScore() {
+        return totalScore;
+    }
+
     public MainActivity getmContext() {
         return mContext;
     }

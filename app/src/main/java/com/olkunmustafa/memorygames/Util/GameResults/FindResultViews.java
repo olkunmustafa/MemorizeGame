@@ -41,6 +41,14 @@ public class FindResultViews {
     private TextView dialogTitle;
 
     /**
+     * Creates a text view object
+     * in order to show the level score
+     *
+     * @since 0.1.0
+     */
+    private TextView levelPoint;
+
+    /**
      * Creates ViewGroup object
      *
      * @since 0.1.0
@@ -67,6 +75,7 @@ public class FindResultViews {
 
         this.gameResultDialog = ( ViewGroup ) this.mContext.findViewById( R.id.gameResultDialog );
         this.dialogTitle = ( TextView ) this.mContext.findViewById( R.id.dialogTitle );
+        this.levelPoint = ( TextView ) this.mContext.findViewById( R.id.levelPoint );
         this.dialogButton = ( Button ) this.mContext.findViewById( R.id.dialogButton );
         this.gameResultDialogGroup = ( LinearLayout ) this.mContext.findViewById( R.id.gameResultDialogGroup );
 
@@ -78,6 +87,10 @@ public class FindResultViews {
 
     public TextView getDialogTitle() {
         return dialogTitle;
+    }
+
+    public TextView getLevelPoint() {
+        return levelPoint;
     }
 
     public ViewGroup getGameResultDialog() {
