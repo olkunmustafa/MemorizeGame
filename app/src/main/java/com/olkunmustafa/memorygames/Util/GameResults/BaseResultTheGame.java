@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.Util.CalculateHelper;
+import com.olkunmustafa.memorygames.Util.OnClickListeners.ChangeScore;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -39,6 +40,13 @@ public abstract class BaseResultTheGame {
      * @since 0.1.0
      */
     protected FindResultViews mFindViewResultViews;
+
+    /**
+     * Used for calculating the score
+     *
+     * @since 0.1.0
+     */
+    private ChangeScore changeScore;
 
     /**
      * Public constructor
@@ -126,6 +134,10 @@ public abstract class BaseResultTheGame {
      */
     public void startNewGame() {
 
+        // Reset level score
+        this.getChangeScore()
+                .resetLevelScore();
+
         // Get squares information
         this.getmContext().gradeRowColumn
                 = this.getmContext().listGRD.get( this.getmContext().level - 1 );
@@ -207,6 +219,19 @@ public abstract class BaseResultTheGame {
             }
         } );
 
+    }
+
+    public ChangeScore getChangeScore() {
+
+        if( this.changeScore == null )
+            throw new NullPointerException( "ChangeScore is null" );
+
+        return this.changeScore;
+    }
+
+    public BaseResultTheGame setChangeScore( ChangeScore changeScore ) {
+        this.changeScore = changeScore;
+        return this;
     }
 
     public MainActivity getmContext() {

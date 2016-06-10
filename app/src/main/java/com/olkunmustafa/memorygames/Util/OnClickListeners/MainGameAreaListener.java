@@ -104,24 +104,31 @@ public class MainGameAreaListener implements
 
             if ( !theSameClick ) {
 
-                this.mChangeScore.increase();
                 this.squaresInformationses.add( sInformation );
 
                 if ( sInformation.isActive() ) {
+
+                    this.mChangeScore.increase();
                     customSquare.setBackgroundColor( colorTrue );
 
                     // Close to click if the clicked square count size is equal to active square count.
                     // This means, all answers all correct
                     if ( this.squaresInformationses.size() == this.mContext.getGradeRowColumn().getActiveCount() ) {
                         this.setCloseToClick( false );
-                        this.mGameResultOps = new GameResultOps( new WinTheGame( this.mContext ) );
+                        this.mGameResultOps = new GameResultOps(
+                                new WinTheGame( this.mContext )
+                                        .setChangeScore( this.mChangeScore )
+                        );
 
                     }
 
                 } else {
                     customSquare.setBackgroundColor( colorFalse );
                     this.setCloseToClick( false );
-                    this.mGameResultOps = new GameResultOps( new LoseTheGame( this.mContext ) );
+                    this.mGameResultOps = new GameResultOps(
+                            new LoseTheGame( this.mContext )
+                                    .setChangeScore( this.mChangeScore )
+                    );
 
                 }
 

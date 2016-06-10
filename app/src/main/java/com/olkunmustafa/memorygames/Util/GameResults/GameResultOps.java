@@ -5,9 +5,6 @@ package com.olkunmustafa.memorygames.Util.GameResults;
  */
 public class GameResultOps {
 
-    /**
-     *
-     */
     public BaseResultTheGame iTheGameResult;
 
     public GameResultOps( BaseResultTheGame iTheGameResult ) {

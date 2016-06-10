@@ -4,6 +4,7 @@ import com.olkunmustafa.memorygames.Holders.GradeRowColumn;
 import com.olkunmustafa.memorygames.Holders.SquaresInformations;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by olkunmustafa on 22/05/16
@@ -30,6 +31,20 @@ public class CalculateHelper {
         }
 
         return informations;
+    }
+
+    /**
+     * @param level The level of the game
+     * @return a random number defined between numbers
+     * @since 0.1.0
+     */
+    public static int getPoint( int level ) {
+
+        int gap = 50;
+        int start = level * gap;
+        Random rand = new Random();
+
+        return rand.nextInt( gap ) + start;
     }
 
 }

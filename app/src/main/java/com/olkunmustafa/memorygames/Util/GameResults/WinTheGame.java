@@ -6,6 +6,7 @@ import android.view.View;
 import com.olkunmustafa.memorygames.Holders.GridviewGrades;
 import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.R;
+import com.olkunmustafa.memorygames.Util.OnClickListeners.ChangeScore;
 
 /**
  * Created by olkunmustafa on 30/05/16
@@ -29,6 +30,7 @@ public class WinTheGame extends BaseResultTheGame {
 
     @Override
     public void endTheGame() {
+
         this.getmContext()
                 .getGameAreaWrapper()
                 .animate()
@@ -106,8 +108,6 @@ public class WinTheGame extends BaseResultTheGame {
                     = this.getmContext().level + 1;
 
         }
-
-
         super.startNewGame();
 
         this.getmContext()
