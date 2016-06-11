@@ -29,6 +29,9 @@ public class LoseTheGame extends BaseResultTheGame {
     @Override
     public void endTheGame() {
 
+        this.getChangeScore().decreaseTheTotalScore();
+        this.getChangeScore().resetLevelScore();
+
         this.getmContext()
                 .getGameAreaWrapper()
                 .animate()
@@ -43,13 +46,17 @@ public class LoseTheGame extends BaseResultTheGame {
 
                     @Override
                     public void onAnimationEnd( Animator animation ) {
+
+                        // Shows the score to user
                         showResultWithDialog();
 
+                        // Moves the game are to start point.
                         getmContext()
                                 .getGameAreaWrapper()
                                 .setTranslationX( - getmContext()
                                         .getMainWrapper().getWidth() );
 
+                        // Trash the listener.
                         getmContext()
                                 .getGameAreaWrapper()
                                 .animate()
@@ -72,6 +79,15 @@ public class LoseTheGame extends BaseResultTheGame {
     @Override
     public void showResultWithDialog() {
         super.showResultWithDialog();
+
+        this.mFindViewResultViews
+                .getLevelPoint()
+                .setText(
+                        String.format(
+                                getMyResources().getString( R.string.level_score ),
+                                getChangeScore().getLevelScore()
+                        )
+                );
 
         this.mFindViewResultViews
                 .getDialogTitle()

@@ -123,6 +123,7 @@ public class MainGameAreaListener implements
                     }
 
                 } else {
+
                     customSquare.setBackgroundColor( colorFalse );
                     this.setCloseToClick( false );
                     this.mGameResultOps = new GameResultOps(

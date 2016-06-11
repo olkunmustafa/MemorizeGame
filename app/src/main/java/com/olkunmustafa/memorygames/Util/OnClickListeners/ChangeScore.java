@@ -145,7 +145,8 @@ public class ChangeScore {
      * @since 0.1.0
      */
     public void decreaseTheTotalScore() {
-        this.totalScore += levelScore;
+        this.totalScore -= levelScore;
+        this.totalTextView.setText( String.valueOf( this.totalScore ) );
 
     }
 
