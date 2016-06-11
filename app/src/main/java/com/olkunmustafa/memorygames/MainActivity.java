@@ -162,7 +162,7 @@ public class MainActivity extends BaseActivity {
 
     private void startNewGame() {
 
-        this.level = this.level + 1;
+        this.level = this.level + 10;
         this.gradeRowColumn = this.listGRD.get( this.level - 1 );
         this.informations.addAll( CalculateHelper.getGradedList( gradeRowColumn ) );
 
@@ -198,7 +198,8 @@ public class MainActivity extends BaseActivity {
             int totalWidth = width * ( this.getGradeRowColumn().column );
             int totalSpacing = spacing * ( this.getGradeRowColumn().column );
 
-            int totalHeight = ( width * 6 ) + ( spacing * 6 );
+            int gradeBorder = this.getResources().getDimensionPixelSize( R.dimen.dialog_wrapper_border );
+            int totalHeight = ( ( ( width * 6 ) + ( spacing * 6 ) ) + gradeBorder );
 
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams( totalWidth + totalSpacing, totalHeight );
             lp.addRule( RelativeLayout.CENTER_VERTICAL );

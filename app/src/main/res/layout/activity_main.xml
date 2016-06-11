@@ -23,7 +23,6 @@
                 android:id="@+id/totalScore"
                 android:text="Test View"
                 android:textColor="@android:color/white"
-                android:layout_marginBottom="40dp"
                 android:textSize="35sp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"

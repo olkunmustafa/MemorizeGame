@@ -11,6 +11,7 @@
     <dimen name="dialog_padding_tb">20dp</dimen>
     <dimen name="dialog_text_margin_bottom">10dp</dimen>
     <dimen name="dialog_wrapper_radius">5dp</dimen>
+    <dimen name="dialog_wrapper_border">6dp</dimen>
     <dimen name="gridviewMargin">4dp</dimen>
 
 </resources>
