@@ -82,13 +82,38 @@ public class ChangeScore {
 
         // Increases the total score of the game.
         this.increaseTheTotalScore( point );
+        this.animateSquareScore( "+" + point, false );
+
+    }
+
+    /**
+     * Increases the main point when the user
+     * clicked the true squares.
+     *
+     * @since 0.1.0
+     */
+    public void decrease() {
+
+        this.animateSquareScore( "Oh noooo!", true );
+
+    }
+
+    /**
+     * Animates the score on the page
+     * when the user clicked the squares.
+     *
+     * @since 0.1.0
+     */
+    public void animateSquareScore( String point, boolean negative ) {
 
         // Fetch the view from point layout
         final ViewGroup scoreLayout = ( ViewGroup ) LayoutInflater.from( mContext ).inflate( R.layout.point_layout, null );
         scoreLayout.setAlpha( 0f );
 
         TextView scoreView = ( TextView ) scoreLayout.findViewById( R.id.theSquareScore );
-        scoreView.setText( "+" + point );
+        scoreView.setText( point );
+        if ( negative )
+            scoreView.setTextColor( getmContext().getResources().getColor( R.color.red ) );
 
         // Add view that is fetched
         this.getmContext().getScoreWrapper()
@@ -127,6 +152,7 @@ public class ChangeScore {
                 getmContext().getScoreWrapper().removeView( scoreLayout );
             }
         }.sendEmptyMessageDelayed( 0, 1600 );
+
     }
 
     /**
