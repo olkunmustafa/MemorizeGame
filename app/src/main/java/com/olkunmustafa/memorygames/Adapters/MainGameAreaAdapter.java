@@ -102,23 +102,25 @@ public class MainGameAreaAdapter extends BaseAdapter {
 
             if ( squaresInformations.isActive() ) {
 
-                int colorFrom = ContextCompat.getColor( this.mContext, R.color.colorPrimary );
+//                int colorFrom = ContextCompat.getColor( this.mContext, R.color.colorPrimary );
                 int colorTo = ContextCompat.getColor( this.mContext, R.color.colorAccent );
+//
+//                ValueAnimator colorAnimation = ValueAnimator.ofObject( new ArgbEvaluator(), colorFrom, colorTo );
+//                colorAnimation.setDuration( 300 ); // milliseconds
+//
+//                final ViewHolder finalHolder = holder;
+//                colorAnimation.addUpdateListener( new ValueAnimator.AnimatorUpdateListener() {
+//
+//                    @Override
+//                    public void onAnimationUpdate( ValueAnimator animator ) {
+//                        finalHolder.customSquare.setBackgroundColor( ( int ) animator.getAnimatedValue() );
+//
+//                    }
+//
+//                } );
+//                colorAnimation.start();
 
-                ValueAnimator colorAnimation = ValueAnimator.ofObject( new ArgbEvaluator(), colorFrom, colorTo );
-                colorAnimation.setDuration( 300 ); // milliseconds
-
-                final ViewHolder finalHolder = holder;
-                colorAnimation.addUpdateListener( new ValueAnimator.AnimatorUpdateListener() {
-
-                    @Override
-                    public void onAnimationUpdate( ValueAnimator animator ) {
-                        finalHolder.customSquare.setBackgroundColor( ( int ) animator.getAnimatedValue() );
-
-                    }
-
-                } );
-                colorAnimation.start();
+                holder.customSquare.setBackgroundColor( colorTo );
 
             }
 

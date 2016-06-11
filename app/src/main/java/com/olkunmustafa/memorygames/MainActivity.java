@@ -162,7 +162,7 @@ public class MainActivity extends BaseActivity {
 
     private void startNewGame() {
 
-        this.level = this.level + 10;
+        this.level = this.level + 1;
         this.gradeRowColumn = this.listGRD.get( this.level - 1 );
         this.informations.addAll( CalculateHelper.getGradedList( gradeRowColumn ) );
 
