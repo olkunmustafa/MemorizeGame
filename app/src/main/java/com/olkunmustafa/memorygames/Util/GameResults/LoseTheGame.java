@@ -29,6 +29,7 @@ public class LoseTheGame extends BaseResultTheGame {
     @Override
     public void endTheGame() {
 
+        this.getmContext().decreaseTheHeart();
         this.getChangeScore().decrease();
         this.getChangeScore().decreaseTheTotalScore();
         this.getChangeScore().resetLevelScore();

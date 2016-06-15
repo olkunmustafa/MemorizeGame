@@ -15,17 +15,43 @@
             android:layout_height="match_parent"
             android:id="@+id/scoreWrapper"
             android:layout_above="@+id/gameAreaWrapper"
+            android:paddingLeft="@dimen/gameAreaPaddinglr"
+            android:paddingRight="@dimen/gameAreaPaddinglr"
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/totalScore"
-                android:text="Test View"
+                android:id="@+id/levelView"
+                android:text="Level"
                 android:textColor="@android:color/white"
-                android:textSize="35sp"
+                android:textSize="@dimen/mainAreaLeftRightTextSize"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/totalScore"
+                android:text="Point"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/mainAreaMiddleTextSize"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lifeView"
+                android:text="Life"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/mainAreaLeftRightTextSize"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 />
 
         </RelativeLayout>

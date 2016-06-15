@@ -13,5 +13,8 @@
     <dimen name="dialog_wrapper_radius">5dp</dimen>
     <dimen name="dialog_wrapper_border">6dp</dimen>
     <dimen name="gridviewMargin">4dp</dimen>
+    <dimen name="mainAreaLeftRightTextSize">15sp</dimen>
+    <dimen name="mainAreaMiddleTextSize">25sp</dimen>
+    <dimen name="gameAreaPaddinglr">15dp</dimen>
 
 </resources>

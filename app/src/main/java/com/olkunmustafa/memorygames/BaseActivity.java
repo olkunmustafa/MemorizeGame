@@ -1,5 +1,8 @@
 package com.olkunmustafa.memorygames;
 
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 /**
@@ -7,6 +10,17 @@ import android.support.v7.app.AppCompatActivity;
  */
 public class BaseActivity extends AppCompatActivity {
 
+    /**
+     * Allows the system resources
+     *
+     * @since 0.1.0
+     */
+    protected Resources mResources;
 
+    @Override
+    protected void onCreate( @Nullable Bundle savedInstanceState ) {
+        super.onCreate( savedInstanceState );
 
+        this.mResources = getResources();
+    }
 }

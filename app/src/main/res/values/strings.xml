@@ -7,4 +7,6 @@
     <string name="lose_the_game">Oh poor you!</string>
     <string name="continue_to_play">Continue</string>
     <string name="level_score">Level Score : %1$d</string>
+    <string name="level_view">Level : %1$d</string>
+    <string name="life_view">Life : %1$d</string>
 </resources>

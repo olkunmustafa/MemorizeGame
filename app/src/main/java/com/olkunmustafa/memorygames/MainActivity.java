@@ -2,8 +2,6 @@ package com.olkunmustafa.memorygames;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,7 +12,6 @@ import com.olkunmustafa.memorygames.Holders.GridviewGrades;
 import com.olkunmustafa.memorygames.Holders.SquaresInformations;
 import com.olkunmustafa.memorygames.Util.CalculateHelper;
 import com.olkunmustafa.memorygames.Util.GameResults.FindResultViews;
-import com.olkunmustafa.memorygames.Util.GameResults.WinTheGame;
 import com.olkunmustafa.memorygames.Util.OnClickListeners.MainGameAreaListener;
 import com.olkunmustafa.memorygames.Util.OpenCloseToClick;
 import com.orhanobut.logger.Logger;
@@ -113,6 +110,27 @@ public class MainActivity extends BaseActivity {
      */
     private RelativeLayout scoreWrapper;
 
+    /**
+     * The life for user
+     *
+     * @since 0.1.0
+     */
+    private int life;
+
+    /**
+     * Indicates the levelView object
+     *
+     * @since 0.1.0
+     */
+    private TextView levelView;
+
+    /**
+     * Indicates the lifeView object.
+     *
+     * @since 0.1.0
+     */
+    private TextView lifeView;
+
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
@@ -136,6 +154,8 @@ public class MainActivity extends BaseActivity {
         this.mainWrapper = ( RelativeLayout ) findViewById( R.id.mainWrapper );
         this.mainGameArea = ( GridView ) findViewById( R.id.mainGameArea );
         this.scoreWrapper = ( RelativeLayout ) findViewById( R.id.scoreWrapper );
+        this.levelView = ( TextView ) findViewById( R.id.levelView );
+        this.lifeView = ( TextView ) findViewById( R.id.lifeView );
 
     }
 
@@ -163,12 +183,17 @@ public class MainActivity extends BaseActivity {
     private void startNewGame() {
 
         this.level = this.level + 1;
+        this.life = 3;
+
         this.gradeRowColumn = this.listGRD.get( this.level - 1 );
         this.informations.addAll( CalculateHelper.getGradedList( gradeRowColumn ) );
 
         this.gameAreaAdapter = new MainGameAreaAdapter( this, this.informations );
         this.mainGameArea.setAdapter( this.gameAreaAdapter );
         this.mainGameArea.setOnItemClickListener( this.gameAreaListener );
+
+        this.setLevelViewText( this.level );
+        this.setLifeViewText( this.life );
 
     }
 
@@ -210,6 +235,38 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Decreases the life count.
+     *
+     * @since 0.1.0
+     */
+    public void decreaseTheHeart() {
+        this.life--;
+
+    }
+
+    /**
+     * Changes the level value
+     *
+     * @param level Current level
+     * @since 0.1.0
+     */
+    public void setLevelViewText( int level ) {
+        this.levelView.setText( String.format( this.mResources.getString( R.string.level_view ), level ) );
+
+    }
+
+    /**
+     * Changes the life value
+     *
+     * @param life Current life value
+     * @since 0.1.0
+     */
+    public void setLifeViewText( int life ) {
+        this.lifeView.setText( String.format( this.mResources.getString( R.string.life_view ), life ) );
+
+    }
+
     public RelativeLayout getScoreWrapper() {
         return scoreWrapper;
     }
@@ -244,5 +301,13 @@ public class MainActivity extends BaseActivity {
 
     public FindResultViews getFindResultViews() {
         return mFindResultViews;
+    }
+
+    public TextView getLevelView() {
+        return levelView;
+    }
+
+    public TextView getLifeView() {
+        return lifeView;
     }
 }

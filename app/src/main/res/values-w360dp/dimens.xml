@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="mainAreaLeftRightTextSize">20sp</dimen>
+    <dimen name="mainAreaMiddleTextSize">35sp</dimen>
+
+</resources>
