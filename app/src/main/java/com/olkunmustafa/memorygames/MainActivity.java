@@ -192,8 +192,8 @@ public class MainActivity extends BaseActivity {
         this.mainGameArea.setAdapter( this.gameAreaAdapter );
         this.mainGameArea.setOnItemClickListener( this.gameAreaListener );
 
-        this.setLevelViewText( this.level );
-        this.setLifeViewText( this.life );
+        this.setLevelViewText();
+        this.setLifeViewText();
 
     }
 
@@ -248,10 +248,9 @@ public class MainActivity extends BaseActivity {
     /**
      * Changes the level value
      *
-     * @param level Current level
      * @since 0.1.0
      */
-    public void setLevelViewText( int level ) {
+    public void setLevelViewText() {
         this.levelView.setText( String.format( this.mResources.getString( R.string.level_view ), level ) );
 
     }
@@ -259,10 +258,9 @@ public class MainActivity extends BaseActivity {
     /**
      * Changes the life value
      *
-     * @param life Current life value
      * @since 0.1.0
      */
-    public void setLifeViewText( int life ) {
+    public void setLifeViewText() {
         this.lifeView.setText( String.format( this.mResources.getString( R.string.life_view ), life ) );
 
     }

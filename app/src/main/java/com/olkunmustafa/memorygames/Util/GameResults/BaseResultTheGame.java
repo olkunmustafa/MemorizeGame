@@ -145,6 +145,10 @@ public abstract class BaseResultTheGame {
      */
     public void startNewGame() {
 
+        // Texts the level on levelView
+        this.getmContext()
+                .setLevelViewText();
+
         // Reset level score
         this.getChangeScore()
                 .resetLevelScore();

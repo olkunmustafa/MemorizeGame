@@ -30,6 +30,8 @@ public class LoseTheGame extends BaseResultTheGame {
     public void endTheGame() {
 
         this.getmContext().decreaseTheHeart();
+        this.getmContext().setLifeViewText();
+
         this.getChangeScore().decrease();
         this.getChangeScore().decreaseTheTotalScore();
         this.getChangeScore().resetLevelScore();
@@ -120,7 +122,7 @@ public class LoseTheGame extends BaseResultTheGame {
 
         if( this.getmContext().level > 1 ){
 
-            // Increase the level
+            // Decrease the level
             this.getmContext().level
                     = this.getmContext().level - 1;
 
