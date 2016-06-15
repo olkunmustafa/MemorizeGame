@@ -1,8 +1,10 @@
 package com.olkunmustafa.memorygames.Util.GameResults;
 
 import android.animation.Animator;
+import android.content.Intent;
 import android.view.View;
 
+import com.olkunmustafa.memorygames.EndActivity;
 import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.R;
 
@@ -30,53 +32,64 @@ public class LoseTheGame extends BaseResultTheGame {
     public void endTheGame() {
 
         this.getmContext().decreaseTheHeart();
-        this.getmContext().setLifeViewText();
 
-        this.getChangeScore().decrease();
-        this.getChangeScore().decreaseTheTotalScore();
-        this.getChangeScore().resetLevelScore();
+        if ( ( this.getmContext().getLife() + 1 ) > 0 ) {
 
-        this.getmContext()
-                .getGameAreaWrapper()
-                .animate()
-                .translationX( this.getmContext()
-                        .getMainWrapper().getWidth() )
-                .setDuration( TRANSLATION_X_DURATION )
-                .setListener( new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart( Animator animation ) {
+            this.getmContext().setLifeViewText();
 
-                    }
+            this.getChangeScore().decrease();
+            this.getChangeScore().decreaseTheTotalScore();
+            this.getChangeScore().resetLevelScore();
 
-                    @Override
-                    public void onAnimationEnd( Animator animation ) {
+            this.getmContext()
+                    .getGameAreaWrapper()
+                    .animate()
+                    .translationX( this.getmContext()
+                            .getMainWrapper().getWidth() )
+                    .setDuration( TRANSLATION_X_DURATION )
+                    .setListener( new Animator.AnimatorListener() {
+                        @Override
+                        public void onAnimationStart( Animator animation ) {
 
-                        // Shows the score to user
-                        showResultWithDialog();
+                        }
 
-                        // Moves the game are to start point.
-                        getmContext()
-                                .getGameAreaWrapper()
-                                .setTranslationX( - getmContext()
-                                        .getMainWrapper().getWidth() );
+                        @Override
+                        public void onAnimationEnd( Animator animation ) {
 
-                        // Trash the listener.
-                        getmContext()
-                                .getGameAreaWrapper()
-                                .animate()
-                                .setListener( null );
-                    }
+                            // Shows the score to user
+                            showResultWithDialog();
 
-                    @Override
-                    public void onAnimationCancel( Animator animation ) {
+                            // Moves the game are to start point.
+                            getmContext()
+                                    .getGameAreaWrapper()
+                                    .setTranslationX( -getmContext()
+                                            .getMainWrapper().getWidth() );
 
-                    }
+                            // Trash the listener.
+                            getmContext()
+                                    .getGameAreaWrapper()
+                                    .animate()
+                                    .setListener( null );
+                        }
 
-                    @Override
-                    public void onAnimationRepeat( Animator animation ) {
+                        @Override
+                        public void onAnimationCancel( Animator animation ) {
 
-                    }
-                } );
+                        }
+
+                        @Override
+                        public void onAnimationRepeat( Animator animation ) {
+
+                        }
+                    } );
+
+        } else {
+
+            Intent intent = new Intent( this.getmContext(), EndActivity.class );
+            this.getmContext().startActivity( intent );
+            this.getmContext().finish();
+
+        }
 
     }
 
@@ -120,7 +133,7 @@ public class LoseTheGame extends BaseResultTheGame {
     @Override
     public void startNewGame() {
 
-        if( this.getmContext().level > 1 ){
+        if ( this.getmContext().level > 1 ) {
 
             // Decrease the level
             this.getmContext().level

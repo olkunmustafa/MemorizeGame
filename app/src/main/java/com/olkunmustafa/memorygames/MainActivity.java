@@ -29,6 +29,13 @@ public class MainActivity extends BaseActivity {
     public int level;
 
     /**
+     * The life for user
+     *
+     * @since 0.1.0
+     */
+    private int life;
+
+    /**
      * Provides an area for playing game
      *
      * @since 0.1.0
@@ -109,13 +116,6 @@ public class MainActivity extends BaseActivity {
      * @since 0.1.0
      */
     private RelativeLayout scoreWrapper;
-
-    /**
-     * The life for user
-     *
-     * @since 0.1.0
-     */
-    private int life;
 
     /**
      * Indicates the levelView object
@@ -265,6 +265,10 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    public int getLife() {
+        return life;
+    }
+
     public RelativeLayout getScoreWrapper() {
         return scoreWrapper;
     }
@@ -299,13 +303,5 @@ public class MainActivity extends BaseActivity {
 
     public FindResultViews getFindResultViews() {
         return mFindResultViews;
-    }
-
-    public TextView getLevelView() {
-        return levelView;
-    }
-
-    public TextView getLifeView() {
-        return lifeView;
     }
 }
