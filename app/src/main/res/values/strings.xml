@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Memory Games</string>
+    <string name="app_name">Memorize</string>
     <string name="title_activity_custom_view_test">CustomViewTestActivity</string>
     <string name="dummyText">Dummy Text</string>
     <string name="dummyButtonText">Click</string>
@@ -9,4 +9,5 @@
     <string name="level_score">Level Score : %1$d</string>
     <string name="level_view">Level : %1$d</string>
     <string name="life_view">Life : %1$d</string>
+    <string name="start_game">Start</string>
 </resources>
