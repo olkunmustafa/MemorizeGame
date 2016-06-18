@@ -48,8 +48,9 @@ public class GameDatabase extends SQLiteOpenHelper {
 
     public static final String GAME_TABLE = "game_table"; // Gelen push bildirimler için tablo adı.
     public static final String GAME_ID = "game_id";
-    public static final String TOTAL_SCORE = "push_title";
-    public static final String TIME = "push_description";
+    public static final String TOTAL_SCORE = "total_score";
+    public static final String LEVEL = "game_level";
+    public static final String TIME = "game_time";
     public static final String CREATE_GAME_TABLE =
             "CREATE TABLE IF NOT EXISTS "
                     + GAME_TABLE
@@ -57,6 +58,8 @@ public class GameDatabase extends SQLiteOpenHelper {
                     + GAME_ID
                     + " INTEGER PRIMARY KEY,"
                     + TOTAL_SCORE
+                    + " INTEGER,"
+                    + LEVEL
                     + " INTEGER,"
                     + TIME
                     + " TEXT "

@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.view.View;
 
+import com.olkunmustafa.memorygames.Database.GameDatabaseQuery;
 import com.olkunmustafa.memorygames.EndActivity;
 import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.R;
@@ -33,7 +34,7 @@ public class LoseTheGame extends BaseResultTheGame {
 
         this.getmContext().decreaseTheHeart();
 
-        if ( ( this.getmContext().getLife() + 1 ) > 0 ) {
+        if ( ( this.getmContext().getLife() + 1 ) > 3 ) {
 
             this.getmContext().setLifeViewText();
 
@@ -85,11 +86,30 @@ public class LoseTheGame extends BaseResultTheGame {
 
         } else {
 
+            this.saveGameDataToDb();
+
             Intent intent = new Intent( this.getmContext(), EndActivity.class );
             this.getmContext().startActivity( intent );
             this.getmContext().finish();
 
         }
+
+    }
+
+    public void saveGameDataToDb(){
+
+        Thread thread = new Thread( new Runnable() {
+            @Override
+            public void run() {
+                GameDatabaseQuery.newInstance( getmContext() ).insertGameData(
+                        getChangeScore().getTotalScore(),
+                        getmContext().level
+                );
+
+            }
+        } );
+
+        thread.start();
 
     }
 
