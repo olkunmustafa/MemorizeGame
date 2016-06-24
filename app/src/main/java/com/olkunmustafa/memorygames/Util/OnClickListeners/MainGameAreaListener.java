@@ -47,14 +47,6 @@ public class MainGameAreaListener implements
     private GameResultOps mGameResultOps;
 
     /**
-     * Changes score when the user
-     * end the game
-     *
-     * @since 0.1.0
-     */
-    protected ChangeScore mChangeScore;
-
-    /**
      * Public consturctor
      *
      * @param mContext
@@ -76,9 +68,6 @@ public class MainGameAreaListener implements
         Logger.init();
 
         this.squaresInformationses = new ArrayList< SquaresInformations >();
-
-        this.mChangeScore
-                = new ChangeScore( this.getmContext() );
 
     }
 
@@ -108,7 +97,7 @@ public class MainGameAreaListener implements
 
                 if ( sInformation.isActive() ) {
 
-                    this.mChangeScore.increase();
+                    this.getmContext().mChangeScore.increase();
                     customSquare.setBackgroundColor( colorTrue );
 
                     // Close to click if the clicked square count size is equal to active square count.
@@ -117,7 +106,7 @@ public class MainGameAreaListener implements
                         this.setCloseToClick( false );
                         this.mGameResultOps = new GameResultOps(
                                 new WinTheGame( this.mContext )
-                                        .setChangeScore( this.mChangeScore )
+                                        .setChangeScore( getmContext().mChangeScore )
                         );
 
                     }
@@ -128,7 +117,7 @@ public class MainGameAreaListener implements
                     this.setCloseToClick( false );
                     this.mGameResultOps = new GameResultOps(
                             new LoseTheGame( this.mContext )
-                                    .setChangeScore( this.mChangeScore )
+                                    .setChangeScore( getmContext().mChangeScore )
                     );
 
                 }

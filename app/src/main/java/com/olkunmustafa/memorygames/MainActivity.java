@@ -3,6 +3,7 @@ package com.olkunmustafa.memorygames;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentManager;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,6 +15,8 @@ import com.olkunmustafa.memorygames.Holders.GridviewGrades;
 import com.olkunmustafa.memorygames.Holders.SquaresInformations;
 import com.olkunmustafa.memorygames.Util.CalculateHelper;
 import com.olkunmustafa.memorygames.Util.GameResults.FindResultViews;
+import com.olkunmustafa.memorygames.Util.GameTime;
+import com.olkunmustafa.memorygames.Util.OnClickListeners.ChangeScore;
 import com.olkunmustafa.memorygames.Util.OnClickListeners.MainGameAreaListener;
 import com.olkunmustafa.memorygames.Util.OpenCloseToClick;
 import com.orhanobut.logger.Logger;
@@ -140,12 +143,31 @@ public class MainActivity extends BaseActivity {
      */
     public FragmentManager fm;
 
+    /**
+     * @since 0.1.0
+     */
+    public FrameLayout gameTimeBackground;
+
+    /**
+     * @since 0.1.0
+     */
+    private GameTime mGametime;
+
+    /**
+     * Changes score when the user
+     * end the game
+     *
+     * @since 0.1.0
+     */
+    public ChangeScore mChangeScore;
+
+
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
 
-        this.defineViews();
+        this.findViews();
         this.init();
         this.defineMainGameAreaAttr();
 
@@ -157,7 +179,7 @@ public class MainActivity extends BaseActivity {
      *
      * @since 1.1.0
      */
-    private void defineViews() {
+    private void findViews() {
 
         this.gameAreaWrapper = ( RelativeLayout ) findViewById( R.id.gameAreaWrapper );
         this.mainWrapper = ( RelativeLayout ) findViewById( R.id.mainWrapper );
@@ -165,6 +187,7 @@ public class MainActivity extends BaseActivity {
         this.scoreWrapper = ( RelativeLayout ) findViewById( R.id.scoreWrapper );
         this.levelView = ( TextView ) findViewById( R.id.levelView );
         this.lifeView = ( TextView ) findViewById( R.id.lifeView );
+        this.gameTimeBackground = ( FrameLayout ) findViewById( R.id.gameTimeBackground );
 
     }
 
@@ -185,6 +208,9 @@ public class MainActivity extends BaseActivity {
         this.fm = this.getSupportFragmentManager();
 
         this.listGRD = GridviewGrades.newInstance().getGradeRowColumn();
+        this.mGametime = new GameTime( this );
+        this.mChangeScore
+                = new ChangeScore( this );
 
         this.startNewGame();
         this.openClickOperation();
@@ -209,6 +235,18 @@ public class MainActivity extends BaseActivity {
 
         this.setLevelViewText();
         this.setLifeViewText();
+
+    }
+
+    @Override
+    protected void onSaveInstanceState( Bundle outState ) {
+    }
+
+    @Override
+    public void onWindowFocusChanged( boolean hasFocus ) {
+        super.onWindowFocusChanged( hasFocus );
+
+        this.mGametime.gameAnimation();
 
     }
 
@@ -289,6 +327,10 @@ public class MainActivity extends BaseActivity {
     public void setLifeViewText() {
         this.lifeView.setText( String.format( this.mResources.getString( R.string.life_view ), life ) );
 
+    }
+
+    public GameTime getmGametime() {
+        return mGametime;
     }
 
     public int getLife() {

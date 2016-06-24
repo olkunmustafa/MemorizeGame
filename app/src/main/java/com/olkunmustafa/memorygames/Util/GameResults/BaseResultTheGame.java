@@ -145,6 +145,10 @@ public abstract class BaseResultTheGame {
      */
     public void startNewGame() {
 
+        this.getmContext()
+                .getmGametime()
+                .gameAnimation();
+
         // Texts the level on levelView
         this.getmContext()
                 .setLevelViewText();

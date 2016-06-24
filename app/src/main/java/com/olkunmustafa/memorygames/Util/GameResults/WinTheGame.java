@@ -32,6 +32,15 @@ public class WinTheGame extends BaseResultTheGame {
     public void endTheGame() {
 
         this.getmContext()
+                .gameTimeBackground
+                .animate()
+                .cancel();
+
+        this.getmContext()
+                .gameTimeBackground
+                .setTranslationY( 0 );
+
+        this.getmContext()
                 .getGameAreaWrapper()
                 .animate()
                 .translationX( -this.getmContext()
@@ -60,6 +69,7 @@ public class WinTheGame extends BaseResultTheGame {
                                 .getGameAreaWrapper()
                                 .animate()
                                 .setListener( null );
+
                     }
 
                     @Override

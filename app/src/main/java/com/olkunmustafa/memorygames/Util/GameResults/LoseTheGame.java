@@ -34,7 +34,7 @@ public class LoseTheGame extends BaseResultTheGame {
 
         this.getmContext().decreaseTheHeart();
 
-        if ( ( this.getmContext().getLife() + 1 ) > 3 ) {
+        if ( ( this.getmContext().getLife() + 1 ) > 1 ) {
 
             this.getmContext().setLifeViewText();
 
