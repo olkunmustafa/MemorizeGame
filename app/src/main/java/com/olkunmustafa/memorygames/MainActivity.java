@@ -2,11 +2,13 @@ package com.olkunmustafa.memorygames;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.FragmentManager;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.olkunmustafa.memorygames.Adapters.MainGameAreaAdapter;
+import com.olkunmustafa.memorygames.Fragments.EndGameFragment;
 import com.olkunmustafa.memorygames.Holders.GradeRowColumn;
 import com.olkunmustafa.memorygames.Holders.GridviewGrades;
 import com.olkunmustafa.memorygames.Holders.SquaresInformations;
@@ -131,6 +133,13 @@ public class MainActivity extends BaseActivity {
      */
     private TextView lifeView;
 
+    /**
+     * Used to replace the fragments
+     *
+     * @since 0.1.0
+     */
+    public FragmentManager fm;
+
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
@@ -173,6 +182,7 @@ public class MainActivity extends BaseActivity {
         this.gameAreaListener = new MainGameAreaListener( this );
         this.mOpenCloseToClick = new OpenCloseToClick( this );
         this.informations = new ArrayList< SquaresInformations >();
+        this.fm = this.getSupportFragmentManager();
 
         this.listGRD = GridviewGrades.newInstance().getGradeRowColumn();
 
@@ -180,6 +190,11 @@ public class MainActivity extends BaseActivity {
         this.openClickOperation();
     }
 
+    /**
+     * Starts a new game.
+     *
+     * @since 0.1.0
+     */
     private void startNewGame() {
 
         this.level = this.level + 1;
@@ -233,6 +248,17 @@ public class MainActivity extends BaseActivity {
             this.gameAreaWrapper.setLayoutParams( lp );
 
         }
+    }
+
+    /**
+     * @since 0.1.0
+     */
+    public void replaceNewFragment(){
+
+            fm.beginTransaction()
+                    .replace( R.id.main_fragment_area, EndGameFragment.newInstance(), "EndGame" )
+                    .commit();
+
     }
 
     /**

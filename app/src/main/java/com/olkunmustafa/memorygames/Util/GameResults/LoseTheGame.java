@@ -87,16 +87,59 @@ public class LoseTheGame extends BaseResultTheGame {
         } else {
 
             this.saveGameDataToDb();
+            this.reversAlphaMainGameArea();
 
-            Intent intent = new Intent( this.getmContext(), EndActivity.class );
-            this.getmContext().startActivity( intent );
-            this.getmContext().finish();
+//            Intent intent = new Intent( this.getmContext(), EndActivity.class );
+//            this.getmContext().startActivity( intent );
+//            this.getmContext().finish();
 
         }
 
     }
 
-    public void saveGameDataToDb(){
+    /**
+     * Reverste the alpha value
+     * when the user lost own all lifes.
+     *
+     * @since 0.1.0
+     */
+    public void reversAlphaMainGameArea() {
+
+        getmContext()
+                .getMainWrapper()
+                .animate()
+                .alpha( 0 )
+                .setDuration( 1250 )
+                .setListener( new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart( Animator animation ) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd( Animator animation ) {
+                        getmContext()
+                                .replaceNewFragment();
+
+                    }
+
+                    @Override
+                    public void onAnimationCancel( Animator animation ) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat( Animator animation ) {
+
+                    }
+                } );
+
+    }
+
+    /**
+     *
+     */
+    public void saveGameDataToDb() {
 
         Thread thread = new Thread( new Runnable() {
             @Override

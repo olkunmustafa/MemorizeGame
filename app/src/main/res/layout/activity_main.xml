@@ -79,6 +79,12 @@
 
     </RelativeLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_fragment_area"
+        />
+
     <include layout="@layout/game_result_dialog"/>
 
 </FrameLayout>
