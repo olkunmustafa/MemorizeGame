@@ -38,7 +38,7 @@ public class LoseTheGame extends BaseResultTheGame {
 
         this.getmContext().decreaseTheHeart();
 
-        if ( ( this.getmContext().getLife() + 1 ) > 1 ) {
+        if ( ( this.getmContext().getLife() + 1 ) > 3 ) {
 
             this.getmContext().setLifeViewText();
 
@@ -124,6 +124,11 @@ public class LoseTheGame extends BaseResultTheGame {
                     public void onAnimationEnd( Animator animation ) {
                         getmContext()
                                 .replaceNewFragment();
+
+                        getmContext()
+                                .getMainWrapper()
+                                .animate()
+                                .setListener( null );
 
                     }
 

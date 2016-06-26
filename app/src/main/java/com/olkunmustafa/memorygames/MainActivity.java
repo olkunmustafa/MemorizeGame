@@ -242,7 +242,8 @@ public class MainActivity extends BaseActivity {
     public void onWindowFocusChanged( boolean hasFocus ) {
         super.onWindowFocusChanged( hasFocus );
 
-        this.mGametime.startGameTime();
+        if ( hasFocus )
+            this.mGametime.startGameTime();
 
     }
 
@@ -287,11 +288,11 @@ public class MainActivity extends BaseActivity {
     /**
      * @since 0.1.0
      */
-    public void replaceNewFragment(){
+    public void replaceNewFragment() {
 
-            fm.beginTransaction()
-                    .replace( R.id.main_fragment_area, EndGameFragment.newInstance(), "EndGame" )
-                    .commit();
+        fm.beginTransaction()
+                .replace( R.id.main_fragment_area, EndGameFragment.newInstance(), "EndGame" )
+                .commit();
 
     }
 
