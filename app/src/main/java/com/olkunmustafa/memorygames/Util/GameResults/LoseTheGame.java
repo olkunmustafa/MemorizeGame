@@ -32,6 +32,10 @@ public class LoseTheGame extends BaseResultTheGame {
     @Override
     public void endTheGame() {
 
+        this.getmContext()
+                .getmGametime()
+                .cancelGameTime();
+
         this.getmContext().decreaseTheHeart();
 
         if ( ( this.getmContext().getLife() + 1 ) > 1 ) {

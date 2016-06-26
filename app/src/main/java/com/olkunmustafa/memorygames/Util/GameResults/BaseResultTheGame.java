@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.Util.CalculateHelper;
 import com.olkunmustafa.memorygames.Util.OnClickListeners.ChangeScore;
-import com.orhanobut.logger.Logger;
 
 /**
  * Created by olkunmustafa on 30/05/16
@@ -145,9 +144,14 @@ public abstract class BaseResultTheGame {
      */
     public void startNewGame() {
 
+        // Translate the game background to top.
         this.getmContext()
                 .getmGametime()
-                .gameAnimation();
+                .resetGame();
+
+        this.getmContext()
+                .getmGametime()
+                .startGameTime();
 
         // Texts the level on levelView
         this.getmContext()

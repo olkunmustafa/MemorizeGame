@@ -1,6 +1,7 @@
 package com.olkunmustafa.memorygames.Util;
 
 import android.animation.Animator;
+import android.widget.FrameLayout;
 
 import com.olkunmustafa.memorygames.MainActivity;
 import com.olkunmustafa.memorygames.Util.GameResults.GameResultOps;
@@ -41,6 +42,14 @@ public class GameTime {
     protected ChangeScore mChangeScore;
 
     /**
+     * Provides a ViewGroup object
+     * that is used for showing the time
+     *
+     * @since 0.1.0
+     */
+    public FrameLayout gameTimeBackground;
+
+    /**
      * @since 0.1.0
      */
     public boolean isWin;
@@ -49,14 +58,21 @@ public class GameTime {
         this.mContext = mContext;
 
         this.mChangeScore = new ChangeScore( getmContext() );
+        this.gameTimeBackground = this.getmContext().getGameTimeBackground();
     }
 
-    public void gameAnimation() {
+    /**
+     * Starts the game time
+     * when the user ready.
+     *
+     * @since 0.1.0
+     */
+    public void startGameTime() {
 
         this.isWin = false;
-        this.getmContext().gameTimeBackground
+        this.gameTimeBackground
                 .animate()
-                .translationY( getmContext().gameTimeBackground.getHeight() )
+                .translationY( this.gameTimeBackground.getHeight() )
                 .setDuration( this.gameTime )
                 .setListener( new Animator.AnimatorListener() {
                     @Override
@@ -74,7 +90,7 @@ public class GameTime {
                             );
                         }
 
-                        getmContext().gameTimeBackground
+                        gameTimeBackground
                                 .animate()
                                 .setListener( null );
                     }
@@ -90,6 +106,26 @@ public class GameTime {
 
                     }
                 } );
+
+    }
+
+    /**
+     * Cancels the animate
+     *
+     * @since 0.1.0
+     */
+    public void cancelGameTime(){
+
+        this.gameTimeBackground
+                .animate()
+                .cancel();
+
+    }
+
+    public void resetGame(){
+
+        this.gameTimeBackground
+                .setTranslationY( 0 );
 
     }
 

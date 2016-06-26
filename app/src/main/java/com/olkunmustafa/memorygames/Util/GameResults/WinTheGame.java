@@ -32,13 +32,8 @@ public class WinTheGame extends BaseResultTheGame {
     public void endTheGame() {
 
         this.getmContext()
-                .gameTimeBackground
-                .animate()
-                .cancel();
-
-        this.getmContext()
-                .gameTimeBackground
-                .setTranslationY( 0 );
+                .getmGametime()
+                .cancelGameTime();
 
         this.getmContext()
                 .getGameAreaWrapper()
@@ -131,6 +126,7 @@ public class WinTheGame extends BaseResultTheGame {
                     = this.getmContext().level + 1;
 
         }
+
         super.startNewGame();
 
         this.getmContext()

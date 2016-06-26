@@ -146,7 +146,7 @@ public class MainActivity extends BaseActivity {
     /**
      * @since 0.1.0
      */
-    public FrameLayout gameTimeBackground;
+    private FrameLayout gameTimeBackground;
 
     /**
      * @since 0.1.0
@@ -239,14 +239,10 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void onSaveInstanceState( Bundle outState ) {
-    }
-
-    @Override
     public void onWindowFocusChanged( boolean hasFocus ) {
         super.onWindowFocusChanged( hasFocus );
 
-        this.mGametime.gameAnimation();
+        this.mGametime.startGameTime();
 
     }
 
@@ -327,6 +323,10 @@ public class MainActivity extends BaseActivity {
     public void setLifeViewText() {
         this.lifeView.setText( String.format( this.mResources.getString( R.string.life_view ), life ) );
 
+    }
+
+    public FrameLayout getGameTimeBackground() {
+        return gameTimeBackground;
     }
 
     public GameTime getmGametime() {
